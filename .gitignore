@@ -30,3 +30,23 @@
 *.exe
 *.out
 *.app
+
+# Linux 
+.nfs*
+.nfs.*
+
+# Apple
+.DS*
+._.DS*
+._*
+
+# Eclipse
+.tracecompass
+*/.tracecompass
+
+# Build
+*/build_gd32/*
+*/lib_gd32/*
+
+*.bin
+

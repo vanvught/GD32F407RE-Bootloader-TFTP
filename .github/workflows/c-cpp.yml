@@ -1,0 +1,23 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install arm-none-eabi
+      run: sudo apt install gcc-arm-none-eabi
+    - name: make bootloader-tftp
+      run: |
+        cd bootloader-tftp
+        make -f Makefile.GD32 clean
+        make -f Makefile.GD32
+        cd -
