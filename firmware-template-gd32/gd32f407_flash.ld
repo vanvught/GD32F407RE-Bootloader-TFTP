@@ -1,4 +1,3 @@
-/* memory map */
 MEMORY
 {
   FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 32K
@@ -13,8 +12,7 @@ SECTIONS
 {
   __heap_size = DEFINED(__heap_size) ? __heap_size : 107K;
   __stack_size = DEFINED(__stack_size) ? __stack_size : 1K;
-  
-/* ISR vectors */
+
   .vectors :
   {
     . = ALIGN(4);
@@ -27,8 +25,8 @@ SECTIONS
   .text :
   {
     . = ALIGN(4);
-  *(.text.unlikely*)
-  *(.text.hot*)
+    *(.text.unlikely*)
+    *(.text.hot*)
 	*(.text)
 	*(.text*)
 	*(.glue_7)
@@ -86,7 +84,6 @@ SECTIONS
     PROVIDE_HIDDEN (__fini_array_end = .);
   } >FLASH
 
-  /* provide some necessary symbols for startup file to initialize data */
   _sidata = LOADADDR(.data);
   .data :
   {
@@ -115,7 +112,7 @@ SECTIONS
   PROVIDE ( end = _ebss );
   PROVIDE ( _end = _ebss );
   
-  .heap ORIGIN(RAM) + LENGTH(RAM) - __stack_size - __heap_size :
+  .heap ORIGIN(RAM) + LENGTH(RAM) - __heap_size :
   {
     . = ALIGN(4);
     heap_low = .;
@@ -123,29 +120,34 @@ SECTIONS
     heap_top = .;
     . = ALIGN(4);
   } >RAM AT>RAM
-
-  .stack ORIGIN(RAM) + LENGTH(RAM) - __stack_size :
+    
+  .tcmsram :
   {
+  	_stcmsram = .;
+  	. = ALIGN(4);
+    *(.tcmsram)
+    *(.tcmsram*)
+    *(.lightset*)
+    *(.network*)
     . = ALIGN(4);
+     _etcmsram = .;
+  } >TCMSRAM AT>TCMSRAM
+  
+  .stack ORIGIN(TCMSRAM) + LENGTH(TCMSRAM) - __stack_size :
+  {
+	. = ALIGN(4);
     PROVIDE( _heap_end = . ); 
     . = __stack_size;  
     PROVIDE( _sp = . ); 
     . = ALIGN(4);
-  } >RAM AT>RAM
-
-  .tcmsram :
-  {
-    . = ALIGN(4);
-    *(.tcmsram)
-    *(.tcmsram*)
-  } >TCMSRAM
+  } >TCMSRAM AT>TCMSRAM
   
   .bkpsram :
   {
-    . = ALIGN(4);
+  	. = ALIGN(4);
     *(.bkpsram)
     *(.bkpsram*)
-  } >BKPSRAM
+  } >BKPSRAM AT>BKPSRAM
 
   /DISCARD/ :
   {

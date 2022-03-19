@@ -25,7 +25,6 @@
 
 #include <cstdio>
 #include <cstdint>
-#include <cassert>
 
 #include "hardware.h"
 #include "network.h"
@@ -46,14 +45,6 @@
 
 #include "gd32.h"
 
-#include "debug.h"
-
-#ifndef NDEBUG
-extern "C" {
-	void mem_info(void);
-}
-#endif
-
 int main(void) {
     rcu_periph_clock_enable(KEY_BOOTLOADER_TFTP_RCU_GPIOx);
 #if !defined (GD32F4XX)
@@ -63,6 +54,7 @@ int main(void) {
 	rcu_periph_clock_enable(RCU_PMU);
 	pmu_backup_ldo_config(PMU_BLDOON_ON);
 	rcu_periph_clock_enable(RCU_BKPSRAM);
+	pmu_backup_write_enable();
     gpio_mode_set(KEY_BOOTLOADER_TFTP_GPIOx, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, KEY_BOOTLOADER_TFTP_GPIO_PINx);
 #endif
 
@@ -126,10 +118,6 @@ int main(void) {
 	remoteConfig.SetEnableReboot(true);
 
 	lb.SetMode(ledblink::Mode::FAST);
-
-#ifndef NDEBUG
-	mem_info();
-#endif
 
 	while (1) {
 		nw.Run();

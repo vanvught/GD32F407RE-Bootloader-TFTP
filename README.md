@@ -44,7 +44,7 @@ File: `spiflashinstall.h`
 
 The 1rK difference is needed for other `new` (`malloc`) within the bootloader.
 
-The change to be made in your application is in the file `gd32f407_flash.ld `. 
+The change to be made in your build configuration is in the file `gd32f407_flash.ld `. 
 
 	MEMORY
 	{
