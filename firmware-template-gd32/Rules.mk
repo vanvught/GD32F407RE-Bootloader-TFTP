@@ -7,7 +7,7 @@ LD	 = $(PREFIX)ld
 AR	 = $(PREFIX)ar
 
 FAMILY?=gd32f4xx
-BOARD?=BOARD_GD32F407R
+BOARD?=BOARD_GD32F407RE
 MCU?=gd32f407
 
 FAMILY:=$(shell echo $(FAMILY) | tr A-Z a-z)
@@ -25,7 +25,7 @@ BUILD=build_gd32/
 # Input
 SOURCE = ./
 FIRMWARE_DIR = ./../firmware-template-gd32/
-LINKER = $(FIRMWARE_DIR)/gd32f407_flash.ld
+LINKER = $(FIRMWARE_DIR)/gd32f407re_flash.ld
 
 include ../firmware-template/libs.mk
 
@@ -133,6 +133,6 @@ $(BUILD)main.elf: Makefile.GD32 $(LINKER) $(BUILD)startup_$(MCU).o $(OBJECTS) $(
 	$(PREFIX)size -A -x $(BUILD)main.elf
 
 $(TARGET) : $(BUILD)main.elf 
-	$(PREFIX)objcopy $(BUILD)main.elf -O binary $(TARGET)	
+	$(PREFIX)objcopy $(BUILD)main.elf --remove-section=.tcmsram* --remove-section=.bkpsram* -O binary $(TARGET)
 	
 $(foreach bdir,$(SRCDIR),$(eval $(call compile-objects,$(bdir))))
