@@ -1,0 +1,23 @@
+BOARD=BOARD_BW_OPIDMX4
+
+DEFINES =DISABLE_JSON
+DEFINES+=DISABLE_BIN
+DEFINES+=DISABLE_RTC
+DEFINES+=DISABLE_FS
+DEFINES+=DISABLE_PRINTF_FLOAT
+
+DEFINES+=UDP_MAX_PORTS_ALLOWED=2
+
+#DEFINES+=ENET_LINK_CHECK_REG_POLL
+
+DEFINES+=CONFIG_STORE_USE_SPI
+
+DEFINES+=NDEBUG
+
+SRCDIR=firmware lib
+
+LIBS=remoteconfig flashcodeinstall configstore flash display flashcode
+
+include ../firmware-template-gd32/Rules.mk
+
+prerequisites:

@@ -1,6 +1,0 @@
-DEFINES=NDEBUG
-
-EXTRA_SRCDIR=src/gd32/f4xx
-
-include ../firmware-template-gd32/lib/Rules.mk
-	

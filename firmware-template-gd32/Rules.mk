@@ -34,6 +34,9 @@ LIBS+=c++ c gd32
 $(info [${LIBS}])
 	
 DEFINES:=$(addprefix -D,$(DEFINES))
+ifeq ($(findstring DMX4,$(BOARD)), DMX4)
+	DEFINES+=-DCONSOLE_I2C
+endif
 
 include ../firmware-template-gd32/Includes.mk
 

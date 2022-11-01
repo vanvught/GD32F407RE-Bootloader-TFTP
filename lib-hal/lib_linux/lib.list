@@ -1,0 +1,1230 @@
+
+lib_linux/libhal.a(console_status.o):	file format mach-o 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+
+0000000000000000 <_console_status>:
+       0: 55                           	pushq	%rbp
+       1: 48 89 e5                     	movq	%rsp, %rbp
+       4: 48 83 ec 10                  	subq	$16, %rsp
+       8: 89 7d fc                     	movl	%edi, -4(%rbp)
+       b: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+       f: 48 8b 7d f0                  	movq	-16(%rbp), %rdi
+      13: e8 00 00 00 00               	callq	0x18 <_console_status+0x18>
+      18: 48 83 c4 10                  	addq	$16, %rsp
+      1c: 5d                           	popq	%rbp
+      1d: c3                           	retq
+
+lib_linux/libhal.a(firmwareversion.o):	file format mach-o 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+
+0000000000000000 <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)>:
+       0: 55                           	pushq	%rbp
+       1: 48 89 e5                     	movq	%rsp, %rbp
+       4: 48 83 ec 50                  	subq	$80, %rsp
+       8: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+       c: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+      10: 48 89 55 e8                  	movq	%rdx, -24(%rbp)
+      14: 48 89 4d e0                  	movq	%rcx, -32(%rbp)
+      18: 48 8b 45 f8                  	movq	-8(%rbp), %rax
+      1c: 48 89 05 00 00 00 00         	movq	%rax, (%rip)            ## 0x23 <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)+0x23>
+      23: 48 8b 45 f0                  	movq	-16(%rbp), %rax
+      27: 66 8b 08                     	movw	(%rax), %cx
+      2a: 66 89 0d 00 00 00 00         	movw	%cx, (%rip)             ## 0x31 <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)+0x31>
+      31: 8a 40 02                     	movb	2(%rax), %al
+      34: 88 05 02 00 00 00            	movb	%al, 2(%rip)            ## 0x3c <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)+0x3c>
+      3a: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+      3e: 48 8b 08                     	movq	(%rax), %rcx
+      41: 48 89 0d 03 00 00 00         	movq	%rcx, 3(%rip)           ## 0x4b <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)+0x4b>
+      48: 66 8b 48 08                  	movw	8(%rax), %cx
+      4c: 66 89 0d 0b 00 00 00         	movw	%cx, 11(%rip)           ## 0x5e <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)+0x5e>
+      53: 8a 40 0a                     	movb	10(%rax), %al
+      56: 88 05 0d 00 00 00            	movb	%al, 13(%rip)           ## 0x69 <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)+0x69>
+      5c: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+      60: 48 8b 00                     	movq	(%rax), %rax
+      63: 48 89 05 0e 00 00 00         	movq	%rax, 14(%rip)          ## 0x78 <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)+0x78>
+      6a: e8 00 00 00 00               	callq	0x6f <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)+0x6f>
+      6f: 48 89 c7                     	movq	%rax, %rdi
+      72: 48 8d 75 df                  	leaq	-33(%rbp), %rsi
+      76: e8 00 00 00 00               	callq	0x7b <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)+0x7b>
+      7b: 49 89 c1                     	movq	%rax, %r9
+      7e: 48 8d 3d 00 00 00 00         	leaq	(%rip), %rdi            ## 0x85 <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)+0x85>
+      85: be 3f 00 00 00               	movl	$63, %esi
+      8a: 48 8d 15 d5 00 00 00         	leaq	213(%rip), %rdx         ## 0x166 <FirmwareVersion::Print(char const*)+0x36>
+      91: b9 03 00 00 00               	movl	$3, %ecx
+      96: 4c 8d 05 00 00 00 00         	leaq	(%rip), %r8             ## 0x9d <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)+0x9d>
+      9d: 4d 89 c2                     	movq	%r8, %r10
+      a0: 49 83 c2 03                  	addq	$3, %r10
+      a4: 4c 89 c0                     	movq	%r8, %rax
+      a7: 48 83 c0 0e                  	addq	$14, %rax
+      ab: c7 04 24 0b 00 00 00         	movl	$11, (%rsp)
+      b2: 4c 89 54 24 08               	movq	%r10, 8(%rsp)
+      b7: c7 44 24 10 08 00 00 00      	movl	$8, 16(%rsp)
+      bf: 48 89 44 24 18               	movq	%rax, 24(%rsp)
+      c4: b0 00                        	movb	$0, %al
+      c6: e8 00 00 00 00               	callq	0xcb <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)+0xcb>
+      cb: 48 83 c4 50                  	addq	$80, %rsp
+      cf: 5d                           	popq	%rbp
+      d0: c3                           	retq
+      d1: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+      db: 0f 1f 44 00 00               	nopl	(%rax,%rax)
+
+00000000000000e0 <Hardware::Get()>:
+      e0: 55                           	pushq	%rbp
+      e1: 48 89 e5                     	movq	%rsp, %rbp
+      e4: 48 8b 05 00 00 00 00         	movq	(%rip), %rax            ## 0xeb <Hardware::Get()+0xb>
+      eb: 48 8b 00                     	movq	(%rax), %rax
+      ee: 5d                           	popq	%rbp
+      ef: c3                           	retq
+
+00000000000000f0 <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)>:
+      f0: 55                           	pushq	%rbp
+      f1: 48 89 e5                     	movq	%rsp, %rbp
+      f4: 48 83 ec 20                  	subq	$32, %rsp
+      f8: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+      fc: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+     100: 48 89 55 e8                  	movq	%rdx, -24(%rbp)
+     104: 48 89 4d e0                  	movq	%rcx, -32(%rbp)
+     108: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+     10c: 48 8b 75 f0                  	movq	-16(%rbp), %rsi
+     110: 48 8b 55 e8                  	movq	-24(%rbp), %rdx
+     114: 48 8b 4d e0                  	movq	-32(%rbp), %rcx
+     118: e8 00 00 00 00               	callq	0x11d <FirmwareVersion::FirmwareVersion(char const*, char const*, char const*)+0x2d>
+     11d: 48 83 c4 20                  	addq	$32, %rsp
+     121: 5d                           	popq	%rbp
+     122: c3                           	retq
+     123: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     12d: 0f 1f 00                     	nopl	(%rax)
+
+0000000000000130 <FirmwareVersion::Print(char const*)>:
+     130: 55                           	pushq	%rbp
+     131: 48 89 e5                     	movq	%rsp, %rbp
+     134: 48 83 ec 10                  	subq	$16, %rsp
+     138: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     13c: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+     140: 48 8d 3d 00 00 00 00         	leaq	(%rip), %rdi            ## 0x147 <FirmwareVersion::Print(char const*)+0x17>
+     147: e8 00 00 00 00               	callq	0x14c <FirmwareVersion::Print(char const*)+0x1c>
+     14c: 48 83 7d f0 00               	cmpq	$0, -16(%rbp)
+     151: 0f 84 09 00 00 00            	je	0x160 <FirmwareVersion::Print(char const*)+0x30>
+     157: 48 8b 7d f0                  	movq	-16(%rbp), %rdi
+     15b: e8 00 00 00 00               	callq	0x160 <FirmwareVersion::Print(char const*)+0x30>
+     160: 48 83 c4 10                  	addq	$16, %rsp
+     164: 5d                           	popq	%rbp
+     165: c3                           	retq
+
+lib_linux/libhal.a(ledblink.o):	file format mach-o 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+
+0000000000000000 <LedBlink::LedBlink()>:
+       0: 55                           	pushq	%rbp
+       1: 48 89 e5                     	movq	%rsp, %rbp
+       4: 48 83 ec 10                  	subq	$16, %rsp
+       8: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+       c: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+      10: c7 07 00 00 00 00            	movl	$0, (%rdi)
+      16: c7 47 04 05 00 00 00         	movl	$5, 4(%rdi)
+      1d: 48 c7 47 08 00 00 00 00      	movq	$0, 8(%rdi)
+      25: 48 89 3d 00 00 00 00         	movq	%rdi, (%rip)            ## 0x2c <LedBlink::LedBlink()+0x2c>
+      2c: e8 00 00 00 00               	callq	0x31 <LedBlink::LedBlink()+0x31>
+      31: 48 83 c4 10                  	addq	$16, %rsp
+      35: 5d                           	popq	%rbp
+      36: c3                           	retq
+      37: 66 0f 1f 84 00 00 00 00 00   	nopw	(%rax,%rax)
+
+0000000000000040 <LedBlink::PlatformInit()>:
+      40: 55                           	pushq	%rbp
+      41: 48 89 e5                     	movq	%rsp, %rbp
+      44: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+      48: 5d                           	popq	%rbp
+      49: c3                           	retq
+      4a: 66 0f 1f 44 00 00            	nopw	(%rax,%rax)
+
+0000000000000050 <LedBlink::LedBlink()>:
+      50: 55                           	pushq	%rbp
+      51: 48 89 e5                     	movq	%rsp, %rbp
+      54: 48 83 ec 10                  	subq	$16, %rsp
+      58: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+      5c: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+      60: e8 00 00 00 00               	callq	0x65 <LedBlink::LedBlink()+0x15>
+      65: 48 83 c4 10                  	addq	$16, %rsp
+      69: 5d                           	popq	%rbp
+      6a: c3                           	retq
+      6b: 0f 1f 44 00 00               	nopl	(%rax,%rax)
+
+0000000000000070 <LedBlink::SetMode(ledblink::Mode)>:
+      70: 55                           	pushq	%rbp
+      71: 48 89 e5                     	movq	%rsp, %rbp
+      74: 48 83 ec 20                  	subq	$32, %rsp
+      78: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+      7c: 89 75 f4                     	movl	%esi, -12(%rbp)
+      7f: 48 8b 45 f8                  	movq	-8(%rbp), %rax
+      83: 48 89 45 e8                  	movq	%rax, -24(%rbp)
+      87: 8b 40 04                     	movl	4(%rax), %eax
+      8a: 3b 45 f4                     	cmpl	-12(%rbp), %eax
+      8d: 0f 85 05 00 00 00            	jne	0x98 <LedBlink::SetMode(ledblink::Mode)+0x28>
+      93: e9 b6 00 00 00               	jmp	0x14e <LedBlink::SetMode(ledblink::Mode)+0xde>
+      98: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+      9c: 8b 4d f4                     	movl	-12(%rbp), %ecx
+      9f: 89 48 04                     	movl	%ecx, 4(%rax)
+      a2: 8b 40 04                     	movl	4(%rax), %eax
+      a5: 48 89 45 e0                  	movq	%rax, -32(%rbp)
+      a9: 48 83 e8 04                  	subq	$4, %rax
+      ad: 0f 87 70 00 00 00            	ja	0x123 <LedBlink::SetMode(ledblink::Mode)+0xb3>
+      b3: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+      b7: 48 8d 0d 96 00 00 00         	leaq	150(%rip), %rcx         ## 0x154 <LedBlink::SetMode(ledblink::Mode)+0xe4>
+      be: 48 63 04 81                  	movslq	(%rcx,%rax,4), %rax
+      c2: 48 01 c8                     	addq	%rcx, %rax
+      c5: ff e0                        	jmpq	*%rax
+      c7: 48 8b 7d e8                  	movq	-24(%rbp), %rdi
+      cb: 31 f6                        	xorl	%esi, %esi
+      cd: e8 00 00 00 00               	callq	0xd2 <LedBlink::SetMode(ledblink::Mode)+0x62>
+      d2: e9 57 00 00 00               	jmp	0x12e <LedBlink::SetMode(ledblink::Mode)+0xbe>
+      d7: 48 8b 7d e8                  	movq	-24(%rbp), %rdi
+      db: be ff 00 00 00               	movl	$255, %esi
+      e0: e8 00 00 00 00               	callq	0xe5 <LedBlink::SetMode(ledblink::Mode)+0x75>
+      e5: e9 44 00 00 00               	jmp	0x12e <LedBlink::SetMode(ledblink::Mode)+0xbe>
+      ea: 48 8b 7d e8                  	movq	-24(%rbp), %rdi
+      ee: be 01 00 00 00               	movl	$1, %esi
+      f3: e8 00 00 00 00               	callq	0xf8 <LedBlink::SetMode(ledblink::Mode)+0x88>
+      f8: e9 31 00 00 00               	jmp	0x12e <LedBlink::SetMode(ledblink::Mode)+0xbe>
+      fd: 48 8b 7d e8                  	movq	-24(%rbp), %rdi
+     101: be 03 00 00 00               	movl	$3, %esi
+     106: e8 00 00 00 00               	callq	0x10b <LedBlink::SetMode(ledblink::Mode)+0x9b>
+     10b: e9 1e 00 00 00               	jmp	0x12e <LedBlink::SetMode(ledblink::Mode)+0xbe>
+     110: 48 8b 7d e8                  	movq	-24(%rbp), %rdi
+     114: be 05 00 00 00               	movl	$5, %esi
+     119: e8 00 00 00 00               	callq	0x11e <LedBlink::SetMode(ledblink::Mode)+0xae>
+     11e: e9 0b 00 00 00               	jmp	0x12e <LedBlink::SetMode(ledblink::Mode)+0xbe>
+     123: 48 8b 7d e8                  	movq	-24(%rbp), %rdi
+     127: 31 f6                        	xorl	%esi, %esi
+     129: e8 00 00 00 00               	callq	0x12e <LedBlink::SetMode(ledblink::Mode)+0xbe>
+     12e: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+     132: 48 83 78 08 00               	cmpq	$0, 8(%rax)
+     137: 0f 84 11 00 00 00            	je	0x14e <LedBlink::SetMode(ledblink::Mode)+0xde>
+     13d: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+     141: 48 8b 78 08                  	movq	8(%rax), %rdi
+     145: 8b 70 04                     	movl	4(%rax), %esi
+     148: 48 8b 07                     	movq	(%rdi), %rax
+     14b: ff 50 10                     	callq	*16(%rax)
+     14e: 48 83 c4 20                  	addq	$32, %rsp
+     152: 5d                           	popq	%rbp
+     153: c3                           	retq
+     154: 73 ff                        	jae	0x155 <LedBlink::SetMode(ledblink::Mode)+0xe5>
+     156: ff ff                        	<unknown>
+     158: 83 ff ff                     	cmpl	$-1, %edi
+     15b: ff 96 ff ff ff a9            	callq	*-1442840577(%rsi)
+     161: ff ff                        	<unknown>
+     163: ff bc ff                     	<unknown>
+     166: ff ff                        	<unknown>
+
+lib_linux/libhal.a(utc.o):	file format mach-o 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+
+0000000000000000 <Utc::Validate(float)>:
+       0: 55                           	pushq	%rbp
+       1: 48 89 e5                     	movq	%rsp, %rbp
+       4: f3 0f 11 45 f8               	movss	%xmm0, -8(%rbp)
+       9: f3 0f 2c 45 f8               	cvttss2si	-8(%rbp), %eax
+       e: 89 45 f4                     	movl	%eax, -12(%rbp)
+      11: 83 7d f4 f4                  	cmpl	$-12, -12(%rbp)
+      15: 0f 8c 9d 00 00 00            	jl	0xb8 <Utc::Validate(float)+0xb8>
+      1b: 83 7d f4 0e                  	cmpl	$14, -12(%rbp)
+      1f: 0f 8f 93 00 00 00            	jg	0xb8 <Utc::Validate(float)+0xb8>
+      25: f3 0f 10 45 f8               	movss	-8(%rbp), %xmm0         ## xmm0 = mem[0],zero,zero,zero
+      2a: f3 0f 2a 4d f4               	cvtsi2ssl	-12(%rbp), %xmm1
+      2f: 0f 2e c1                     	ucomiss	%xmm1, %xmm0
+      32: 0f 85 15 00 00 00            	jne	0x4d <Utc::Validate(float)+0x4d>
+      38: 0f 8a 0f 00 00 00            	jp	0x4d <Utc::Validate(float)+0x4d>
+      3e: 69 45 f4 10 0e 00 00         	imull	$3600, -12(%rbp), %eax  ## imm = 0xE10
+      45: 89 45 fc                     	movl	%eax, -4(%rbp)
+      48: e9 72 00 00 00               	jmp	0xbf <Utc::Validate(float)+0xbf>
+      4d: c7 45 f0 00 00 00 00         	movl	$0, -16(%rbp)
+      54: 8b 45 f0                     	movl	-16(%rbp), %eax
+      57: 48 83 f8 0b                  	cmpq	$11, %rax
+      5b: 0f 83 4d 00 00 00            	jae	0xae <Utc::Validate(float)+0xae>
+      61: f3 0f 10 45 f8               	movss	-8(%rbp), %xmm0         ## xmm0 = mem[0],zero,zero,zero
+      66: 8b 45 f0                     	movl	-16(%rbp), %eax
+      69: 89 c1                        	movl	%eax, %ecx
+      6b: 48 8d 05 00 00 00 00         	leaq	(%rip), %rax            ## 0x72 <Utc::Validate(float)+0x72>
+      72: 0f 2e 04 88                  	ucomiss	(%rax,%rcx,4), %xmm0
+      76: 0f 85 1f 00 00 00            	jne	0x9b <Utc::Validate(float)+0x9b>
+      7c: 0f 8a 19 00 00 00            	jp	0x9b <Utc::Validate(float)+0x9b>
+      82: f3 0f 10 05 3a 00 00 00      	movss	58(%rip), %xmm0         ## xmm0 = mem[0],zero,zero,zero
+                                                                        ## 0xc4 <Utc::Validate(float)+0xc4>
+      8a: f3 0f 59 45 f8               	mulss	-8(%rbp), %xmm0
+      8f: f3 0f 2c c0                  	cvttss2si	%xmm0, %eax
+      93: 89 45 fc                     	movl	%eax, -4(%rbp)
+      96: e9 24 00 00 00               	jmp	0xbf <Utc::Validate(float)+0xbf>
+      9b: e9 00 00 00 00               	jmp	0xa0 <Utc::Validate(float)+0xa0>
+      a0: 8b 45 f0                     	movl	-16(%rbp), %eax
+      a3: 83 c0 01                     	addl	$1, %eax
+      a6: 89 45 f0                     	movl	%eax, -16(%rbp)
+      a9: e9 a6 ff ff ff               	jmp	0x54 <Utc::Validate(float)+0x54>
+      ae: e9 00 00 00 00               	jmp	0xb3 <Utc::Validate(float)+0xb3>
+      b3: e9 00 00 00 00               	jmp	0xb8 <Utc::Validate(float)+0xb8>
+      b8: c7 45 fc 00 00 00 00         	movl	$0, -4(%rbp)
+      bf: 8b 45 fc                     	movl	-4(%rbp), %eax
+      c2: 5d                           	popq	%rbp
+      c3: c3                           	retq
+
+lib_linux/libhal.a(hardware.o):	file format mach-o 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+
+0000000000000000 <Hardware::Hardware()>:
+       0: 55                           	pushq	%rbp
+       1: 48 89 e5                     	movq	%rsp, %rbp
+       4: 48 81 ec f0 00 00 00         	subq	$240, %rsp
+       b: 48 8b 05 00 00 00 00         	movq	(%rip), %rax            ## 0x12 <Hardware::Hardware()+0x12>
+      12: 48 8b 00                     	movq	(%rax), %rax
+      15: 48 89 45 f8                  	movq	%rax, -8(%rbp)
+      19: 48 89 bd 18 ff ff ff         	movq	%rdi, -232(%rbp)
+      20: 48 8b bd 18 ff ff ff         	movq	-232(%rbp), %rdi
+      27: 48 89 bd 10 ff ff ff         	movq	%rdi, -240(%rbp)
+      2e: 48 c7 07 00 00 00 00         	movq	$0, (%rdi)
+      35: c7 47 08 03 00 00 00         	movl	$3, 8(%rdi)
+      3c: 48 89 3d 00 00 00 00         	movq	%rdi, (%rip)            ## 0x43 <Hardware::Hardware()+0x43>
+      43: 48 83 c7 0c                  	addq	$12, %rdi
+      47: 31 f6                        	xorl	%esi, %esi
+      49: ba 00 05 00 00               	movl	$1280, %edx             ## imm = 0x500
+      4e: e8 00 00 00 00               	callq	0x53 <Hardware::Hardware()+0x53>
+      53: 48 8b bd 10 ff ff ff         	movq	-240(%rbp), %rdi
+      5a: 48 81 c7 0c 05 00 00         	addq	$1292, %rdi             ## imm = 0x50C
+      61: 48 8d 35 00 00 00 00         	leaq	(%rip), %rsi            ## 0x68 <Hardware::Hardware()+0x68>
+      68: e8 00 00 00 00               	callq	0x6d <Hardware::Hardware()+0x6d>
+      6d: 48 8b bd 10 ff ff ff         	movq	-240(%rbp), %rdi
+      74: 48 81 c7 8c 05 00 00         	addq	$1420, %rdi             ## imm = 0x58C
+      7b: 48 8d 35 00 00 00 00         	leaq	(%rip), %rsi            ## 0x82 <Hardware::Hardware()+0x82>
+      82: e8 00 00 00 00               	callq	0x87 <Hardware::Hardware()+0x87>
+      87: 48 8b 85 10 ff ff ff         	movq	-240(%rbp), %rax
+      8e: c6 80 4c 05 00 00 00         	movb	$0, 1356(%rax)
+      95: 83 78 08 04                  	cmpl	$4, 8(%rax)
+      99: 0f 84 10 00 00 00            	je	0xaf <Hardware::Hardware()+0xaf>
+      9f: 48 8b bd 10 ff ff ff         	movq	-240(%rbp), %rdi
+      a6: 48 83 c7 0c                  	addq	$12, %rdi
+      aa: e8 00 00 00 00               	callq	0xaf <Hardware::Hardware()+0xaf>
+      af: 48 8b bd 10 ff ff ff         	movq	-240(%rbp), %rdi
+      b6: 48 8b 05 f3 09 00 00         	movq	2547(%rip), %rax        ## 0xab0 <__isctype(int, unsigned long)+0x70>
+      bd: 48 89 45 e0                  	movq	%rax, -32(%rbp)
+      c1: 48 8b 05 08 00 00 00         	movq	8(%rip), %rax           ## 0xd0 <Hardware::Hardware()+0xd0>
+      c8: 48 89 45 e8                  	movq	%rax, -24(%rbp)
+      cc: 66 8b 05 10 00 00 00         	movw	16(%rip), %ax           ## 0xe3 <Hardware::Hardware()+0xe3>
+      d3: 66 89 45 f0                  	movw	%ax, -16(%rbp)
+      d7: 8a 05 12 00 00 00            	movb	18(%rip), %al           ## 0xef <Hardware::Hardware()+0xef>
+      dd: 88 45 f2                     	movb	%al, -14(%rbp)
+      e0: 48 8d 75 e0                  	leaq	-32(%rbp), %rsi
+      e4: 48 89 fa                     	movq	%rdi, %rdx
+      e7: 48 81 c2 8c 05 00 00         	addq	$1420, %rdx             ## imm = 0x58C
+      ee: b9 40 00 00 00               	movl	$64, %ecx
+      f3: e8 00 00 00 00               	callq	0xf8 <Hardware::Hardware()+0xf8>
+      f8: 48 8b bd 10 ff ff ff         	movq	-240(%rbp), %rdi
+      ff: 48 81 c7 8c 05 00 00         	addq	$1420, %rdi             ## imm = 0x58C
+     106: 48 8d 35 b6 09 00 00         	leaq	2486(%rip), %rsi        ## 0xac3 <__isctype(int, unsigned long)+0x83>
+     10d: 48 8d 15 b4 09 00 00         	leaq	2484(%rip), %rdx        ## 0xac8 <__isctype(int, unsigned long)+0x88>
+     114: e8 00 00 00 00               	callq	0x119 <Hardware::Hardware()+0x119>
+     119: 48 8d 7d b0                  	leaq	-80(%rbp), %rdi
+     11d: 48 8d 35 ac 09 00 00         	leaq	2476(%rip), %rsi        ## 0xad0 <__isctype(int, unsigned long)+0x90>
+     124: ba 23 00 00 00               	movl	$35, %edx
+     129: e8 00 00 00 00               	callq	0x12e <Hardware::Hardware()+0x12e>
+     12e: 48 8b bd 10 ff ff ff         	movq	-240(%rbp), %rdi
+     135: 48 8d 75 b0                  	leaq	-80(%rbp), %rsi
+     139: 48 89 fa                     	movq	%rdi, %rdx
+     13c: 48 81 c2 0c 05 00 00         	addq	$1292, %rdx             ## imm = 0x50C
+     143: b9 40 00 00 00               	movl	$64, %ecx
+     148: e8 00 00 00 00               	callq	0x14d <Hardware::Hardware()+0x14d>
+     14d: 48 8d bd 70 ff ff ff         	leaq	-144(%rbp), %rdi
+     154: 48 8d 35 a5 09 00 00         	leaq	2469(%rip), %rsi        ## 0xb00 <__isctype(int, unsigned long)+0xc0>
+     15b: ba 37 00 00 00               	movl	$55, %edx
+     160: e8 00 00 00 00               	callq	0x165 <Hardware::Hardware()+0x165>
+     165: 48 8b bd 10 ff ff ff         	movq	-240(%rbp), %rdi
+     16c: 48 8d b5 70 ff ff ff         	leaq	-144(%rbp), %rsi
+     173: 48 89 fa                     	movq	%rdi, %rdx
+     176: 48 81 c2 4c 05 00 00         	addq	$1356, %rdx             ## imm = 0x54C
+     17d: b9 40 00 00 00               	movl	$64, %ecx
+     182: e8 00 00 00 00               	callq	0x187 <Hardware::Hardware()+0x187>
+     187: 48 8b 85 10 ff ff ff         	movq	-240(%rbp), %rax
+     18e: 83 78 08 02                  	cmpl	$2, 8(%rax)
+     192: 0f 85 5c 00 00 00            	jne	0x1f4 <Hardware::Hardware()+0x1f4>
+     198: 48 8d bd 20 ff ff ff         	leaq	-224(%rbp), %rdi
+     19f: 48 8d 35 9a 09 00 00         	leaq	2458(%rip), %rsi        ## 0xb40 <__isctype(int, unsigned long)+0x100>
+     1a6: ba 37 00 00 00               	movl	$55, %edx
+     1ab: e8 00 00 00 00               	callq	0x1b0 <Hardware::Hardware()+0x1b0>
+     1b0: 48 8b bd 10 ff ff ff         	movq	-240(%rbp), %rdi
+     1b7: 48 8d b5 20 ff ff ff         	leaq	-224(%rbp), %rsi
+     1be: 48 8d 95 60 ff ff ff         	leaq	-160(%rbp), %rdx
+     1c5: b9 10 00 00 00               	movl	$16, %ecx
+     1ca: e8 00 00 00 00               	callq	0x1cf <Hardware::Hardware()+0x1cf>
+     1cf: 48 8d bd 60 ff ff ff         	leaq	-160(%rbp), %rdi
+     1d6: 31 c0                        	xorl	%eax, %eax
+     1d8: 89 c6                        	movl	%eax, %esi
+     1da: ba 10 00 00 00               	movl	$16, %edx
+     1df: e8 00 00 00 00               	callq	0x1e4 <Hardware::Hardware()+0x1e4>
+     1e4: 48 89 c1                     	movq	%rax, %rcx
+     1e7: 48 8b 85 10 ff ff ff         	movq	-240(%rbp), %rax
+     1ee: 89 88 cc 05 00 00            	movl	%ecx, 1484(%rax)
+     1f4: 48 8b 05 00 00 00 00         	movq	(%rip), %rax            ## 0x1fb <Hardware::Hardware()+0x1fb>
+     1fb: 48 8b 00                     	movq	(%rax), %rax
+     1fe: 48 8b 4d f8                  	movq	-8(%rbp), %rcx
+     202: 48 39 c8                     	cmpq	%rcx, %rax
+     205: 0f 85 09 00 00 00            	jne	0x214 <Hardware::Hardware()+0x214>
+     20b: 48 81 c4 f0 00 00 00         	addq	$240, %rsp
+     212: 5d                           	popq	%rbp
+     213: c3                           	retq
+     214: e8 00 00 00 00               	callq	0x219 <Hardware::Hardware()+0x219>
+     219: 0f 0b                        	ud2
+     21b: 0f 1f 44 00 00               	nopl	(%rax,%rax)
+
+0000000000000220 <Hardware::ExecCmd(char const*, char*, int)>:
+     220: 55                           	pushq	%rbp
+     221: 48 89 e5                     	movq	%rsp, %rbp
+     224: 48 83 ec 40                  	subq	$64, %rsp
+     228: 48 89 7d f0                  	movq	%rdi, -16(%rbp)
+     22c: 48 89 75 e8                  	movq	%rsi, -24(%rbp)
+     230: 48 89 55 e0                  	movq	%rdx, -32(%rbp)
+     234: 89 4d dc                     	movl	%ecx, -36(%rbp)
+     237: 48 8b 7d e8                  	movq	-24(%rbp), %rdi
+     23b: 48 8d 35 35 09 00 00         	leaq	2357(%rip), %rsi        ## 0xb77 <__isctype(int, unsigned long)+0x137>
+     242: e8 00 00 00 00               	callq	0x247 <Hardware::ExecCmd(char const*, char*, int)+0x27>
+     247: 48 89 45 d0                  	movq	%rax, -48(%rbp)
+     24b: 48 8b 7d e0                  	movq	-32(%rbp), %rdi
+     24f: 8b 75 dc                     	movl	-36(%rbp), %esi
+     252: 83 ee 01                     	subl	$1, %esi
+     255: 48 8b 55 d0                  	movq	-48(%rbp), %rdx
+     259: e8 00 00 00 00               	callq	0x25e <Hardware::ExecCmd(char const*, char*, int)+0x3e>
+     25e: 48 83 f8 00                  	cmpq	$0, %rax
+     262: 0f 85 12 00 00 00            	jne	0x27a <Hardware::ExecCmd(char const*, char*, int)+0x5a>
+     268: 48 8b 7d d0                  	movq	-48(%rbp), %rdi
+     26c: e8 00 00 00 00               	callq	0x271 <Hardware::ExecCmd(char const*, char*, int)+0x51>
+     271: c6 45 ff 00                  	movb	$0, -1(%rbp)
+     275: e9 43 00 00 00               	jmp	0x2bd <Hardware::ExecCmd(char const*, char*, int)+0x9d>
+     27a: 48 8b 7d e0                  	movq	-32(%rbp), %rdi
+     27e: e8 00 00 00 00               	callq	0x283 <Hardware::ExecCmd(char const*, char*, int)+0x63>
+     283: 48 89 45 c8                  	movq	%rax, -56(%rbp)
+     287: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     28b: 48 8b 4d c8                  	movq	-56(%rbp), %rcx
+     28f: 48 83 e9 01                  	subq	$1, %rcx
+     293: 0f be 04 08                  	movsbl	(%rax,%rcx), %eax
+     297: 83 f8 20                     	cmpl	$32, %eax
+     29a: 0f 8d 10 00 00 00            	jge	0x2b0 <Hardware::ExecCmd(char const*, char*, int)+0x90>
+     2a0: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     2a4: 48 8b 4d c8                  	movq	-56(%rbp), %rcx
+     2a8: 48 83 e9 01                  	subq	$1, %rcx
+     2ac: c6 04 08 00                  	movb	$0, (%rax,%rcx)
+     2b0: 48 8b 7d d0                  	movq	-48(%rbp), %rdi
+     2b4: e8 00 00 00 00               	callq	0x2b9 <Hardware::ExecCmd(char const*, char*, int)+0x99>
+     2b9: c6 45 ff 01                  	movb	$1, -1(%rbp)
+     2bd: 8a 45 ff                     	movb	-1(%rbp), %al
+     2c0: 24 01                        	andb	$1, %al
+     2c2: 0f b6 c0                     	movzbl	%al, %eax
+     2c5: 48 83 c4 40                  	addq	$64, %rsp
+     2c9: 5d                           	popq	%rbp
+     2ca: c3                           	retq
+     2cb: 0f 1f 44 00 00               	nopl	(%rax,%rax)
+
+00000000000002d0 <str_find_replace(char*, char const*, char const*)>:
+     2d0: 55                           	pushq	%rbp
+     2d1: 48 89 e5                     	movq	%rsp, %rbp
+     2d4: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     2d8: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+     2dc: 48 89 55 e8                  	movq	%rdx, -24(%rbp)
+     2e0: c7 45 d8 00 00 00 00         	movl	$0, -40(%rbp)
+     2e7: c7 45 d4 00 00 00 00         	movl	$0, -44(%rbp)
+     2ee: c7 45 e0 00 00 00 00         	movl	$0, -32(%rbp)
+     2f5: c7 45 e4 00 00 00 00         	movl	$0, -28(%rbp)
+     2fc: 48 8b 45 f8                  	movq	-8(%rbp), %rax
+     300: 8b 4d e4                     	movl	-28(%rbp), %ecx
+     303: 0f be 04 08                  	movsbl	(%rax,%rcx), %eax
+     307: 83 f8 00                     	cmpl	$0, %eax
+     30a: 0f 84 d4 00 00 00            	je	0x3e4 <str_find_replace(char*, char const*, char const*)+0x114>
+     310: 48 8b 45 f8                  	movq	-8(%rbp), %rax
+     314: 8b 4d d4                     	movl	-44(%rbp), %ecx
+     317: 0f be 04 08                  	movsbl	(%rax,%rcx), %eax
+     31b: 48 8b 4d f0                  	movq	-16(%rbp), %rcx
+     31f: 8b 55 d8                     	movl	-40(%rbp), %edx
+     322: 0f be 0c 11                  	movsbl	(%rcx,%rdx), %ecx
+     326: 39 c8                        	cmpl	%ecx, %eax
+     328: 0f 85 7e 00 00 00            	jne	0x3ac <str_find_replace(char*, char const*, char const*)+0xdc>
+     32e: 8b 45 d4                     	movl	-44(%rbp), %eax
+     331: 83 c0 01                     	addl	$1, %eax
+     334: 89 45 d4                     	movl	%eax, -44(%rbp)
+     337: 8b 45 d8                     	movl	-40(%rbp), %eax
+     33a: 83 c0 01                     	addl	$1, %eax
+     33d: 89 45 d8                     	movl	%eax, -40(%rbp)
+     340: 48 8b 45 f0                  	movq	-16(%rbp), %rax
+     344: 8b 4d d8                     	movl	-40(%rbp), %ecx
+     347: 0f be 04 08                  	movsbl	(%rax,%rcx), %eax
+     34b: 83 f8 00                     	cmpl	$0, %eax
+     34e: 0f 85 53 00 00 00            	jne	0x3a7 <str_find_replace(char*, char const*, char const*)+0xd7>
+     354: c7 45 dc 00 00 00 00         	movl	$0, -36(%rbp)
+     35b: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+     35f: 8b 4d dc                     	movl	-36(%rbp), %ecx
+     362: 0f be 04 08                  	movsbl	(%rax,%rcx), %eax
+     366: 83 f8 00                     	cmpl	$0, %eax
+     369: 0f 84 2b 00 00 00            	je	0x39a <str_find_replace(char*, char const*, char const*)+0xca>
+     36f: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+     373: 8b 4d dc                     	movl	-36(%rbp), %ecx
+     376: 8a 14 08                     	movb	(%rax,%rcx), %dl
+     379: 48 8b 45 f8                  	movq	-8(%rbp), %rax
+     37d: 8b 4d e0                     	movl	-32(%rbp), %ecx
+     380: 88 14 08                     	movb	%dl, (%rax,%rcx)
+     383: 8b 45 dc                     	movl	-36(%rbp), %eax
+     386: 83 c0 01                     	addl	$1, %eax
+     389: 89 45 dc                     	movl	%eax, -36(%rbp)
+     38c: 8b 45 e0                     	movl	-32(%rbp), %eax
+     38f: 83 c0 01                     	addl	$1, %eax
+     392: 89 45 e0                     	movl	%eax, -32(%rbp)
+     395: e9 c1 ff ff ff               	jmp	0x35b <str_find_replace(char*, char const*, char const*)+0x8b>
+     39a: c7 45 d8 00 00 00 00         	movl	$0, -40(%rbp)
+     3a1: 8b 45 d4                     	movl	-44(%rbp), %eax
+     3a4: 89 45 e4                     	movl	%eax, -28(%rbp)
+     3a7: e9 33 00 00 00               	jmp	0x3df <str_find_replace(char*, char const*, char const*)+0x10f>
+     3ac: 48 8b 45 f8                  	movq	-8(%rbp), %rax
+     3b0: 8b 4d e4                     	movl	-28(%rbp), %ecx
+     3b3: 8a 14 08                     	movb	(%rax,%rcx), %dl
+     3b6: 48 8b 45 f8                  	movq	-8(%rbp), %rax
+     3ba: 8b 4d e0                     	movl	-32(%rbp), %ecx
+     3bd: 88 14 08                     	movb	%dl, (%rax,%rcx)
+     3c0: 8b 45 e0                     	movl	-32(%rbp), %eax
+     3c3: 83 c0 01                     	addl	$1, %eax
+     3c6: 89 45 e0                     	movl	%eax, -32(%rbp)
+     3c9: 8b 45 e4                     	movl	-28(%rbp), %eax
+     3cc: 83 c0 01                     	addl	$1, %eax
+     3cf: 89 45 e4                     	movl	%eax, -28(%rbp)
+     3d2: 8b 45 e4                     	movl	-28(%rbp), %eax
+     3d5: 89 45 d4                     	movl	%eax, -44(%rbp)
+     3d8: c7 45 d8 00 00 00 00         	movl	$0, -40(%rbp)
+     3df: e9 18 ff ff ff               	jmp	0x2fc <str_find_replace(char*, char const*, char const*)+0x2c>
+     3e4: e9 00 00 00 00               	jmp	0x3e9 <str_find_replace(char*, char const*, char const*)+0x119>
+     3e9: 8b 45 e0                     	movl	-32(%rbp), %eax
+     3ec: 3b 45 e4                     	cmpl	-28(%rbp), %eax
+     3ef: 0f 83 19 00 00 00            	jae	0x40e <str_find_replace(char*, char const*, char const*)+0x13e>
+     3f5: 48 8b 45 f8                  	movq	-8(%rbp), %rax
+     3f9: 8b 4d e0                     	movl	-32(%rbp), %ecx
+     3fc: c6 04 08 00                  	movb	$0, (%rax,%rcx)
+     400: 8b 45 e0                     	movl	-32(%rbp), %eax
+     403: 83 c0 01                     	addl	$1, %eax
+     406: 89 45 e0                     	movl	%eax, -32(%rbp)
+     409: e9 db ff ff ff               	jmp	0x3e9 <str_find_replace(char*, char const*, char const*)+0x119>
+     40e: 48 8b 45 f8                  	movq	-8(%rbp), %rax
+     412: 5d                           	popq	%rbp
+     413: c3                           	retq
+     414: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     41e: 66 90                        	nop
+
+0000000000000420 <Hardware::Hardware()>:
+     420: 55                           	pushq	%rbp
+     421: 48 89 e5                     	movq	%rsp, %rbp
+     424: 48 83 ec 10                  	subq	$16, %rsp
+     428: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     42c: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+     430: e8 00 00 00 00               	callq	0x435 <Hardware::Hardware()+0x15>
+     435: 48 83 c4 10                  	addq	$16, %rsp
+     439: 5d                           	popq	%rbp
+     43a: c3                           	retq
+     43b: 0f 1f 44 00 00               	nopl	(%rax,%rax)
+
+0000000000000440 <Hardware::GetMachine(unsigned char&)>:
+     440: 55                           	pushq	%rbp
+     441: 48 89 e5                     	movq	%rsp, %rbp
+     444: 48 83 ec 20                  	subq	$32, %rsp
+     448: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     44c: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+     450: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+     454: 48 89 7d e8                  	movq	%rdi, -24(%rbp)
+     458: 48 83 c7 0c                  	addq	$12, %rdi
+     45c: 48 81 c7 00 04 00 00         	addq	$1024, %rdi             ## imm = 0x400
+     463: e8 00 00 00 00               	callq	0x468 <Hardware::GetMachine(unsigned char&)+0x28>
+     468: 48 89 c1                     	movq	%rax, %rcx
+     46b: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+     46f: 88 ca                        	movb	%cl, %dl
+     471: 48 8b 4d f0                  	movq	-16(%rbp), %rcx
+     475: 88 11                        	movb	%dl, (%rcx)
+     477: 48 83 c0 0c                  	addq	$12, %rax
+     47b: 48 05 00 04 00 00            	addq	$1024, %rax             ## imm = 0x400
+     481: 48 83 c4 20                  	addq	$32, %rsp
+     485: 5d                           	popq	%rbp
+     486: c3                           	retq
+     487: 66 0f 1f 84 00 00 00 00 00   	nopw	(%rax,%rax)
+
+0000000000000490 <Hardware::GetSysName(unsigned char&)>:
+     490: 55                           	pushq	%rbp
+     491: 48 89 e5                     	movq	%rsp, %rbp
+     494: 48 83 ec 20                  	subq	$32, %rsp
+     498: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     49c: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+     4a0: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+     4a4: 48 89 7d e8                  	movq	%rdi, -24(%rbp)
+     4a8: 48 83 c7 0c                  	addq	$12, %rdi
+     4ac: e8 00 00 00 00               	callq	0x4b1 <Hardware::GetSysName(unsigned char&)+0x21>
+     4b1: 48 89 c1                     	movq	%rax, %rcx
+     4b4: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+     4b8: 88 ca                        	movb	%cl, %dl
+     4ba: 48 8b 4d f0                  	movq	-16(%rbp), %rcx
+     4be: 88 11                        	movb	%dl, (%rcx)
+     4c0: 48 83 c0 0c                  	addq	$12, %rax
+     4c4: 48 83 c4 20                  	addq	$32, %rsp
+     4c8: 5d                           	popq	%rbp
+     4c9: c3                           	retq
+     4ca: 66 0f 1f 44 00 00            	nopw	(%rax,%rax)
+
+00000000000004d0 <Hardware::GetCpuName(unsigned char&)>:
+     4d0: 55                           	pushq	%rbp
+     4d1: 48 89 e5                     	movq	%rsp, %rbp
+     4d4: 48 83 ec 20                  	subq	$32, %rsp
+     4d8: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     4dc: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+     4e0: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+     4e4: 48 89 7d e8                  	movq	%rdi, -24(%rbp)
+     4e8: 48 81 c7 0c 05 00 00         	addq	$1292, %rdi             ## imm = 0x50C
+     4ef: e8 00 00 00 00               	callq	0x4f4 <Hardware::GetCpuName(unsigned char&)+0x24>
+     4f4: 48 89 c1                     	movq	%rax, %rcx
+     4f7: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+     4fb: 88 ca                        	movb	%cl, %dl
+     4fd: 48 8b 4d f0                  	movq	-16(%rbp), %rcx
+     501: 88 11                        	movb	%dl, (%rcx)
+     503: 48 05 0c 05 00 00            	addq	$1292, %rax             ## imm = 0x50C
+     509: 48 83 c4 20                  	addq	$32, %rsp
+     50d: 5d                           	popq	%rbp
+     50e: c3                           	retq
+     50f: 90                           	nop
+
+0000000000000510 <Hardware::GetSocName(unsigned char&)>:
+     510: 55                           	pushq	%rbp
+     511: 48 89 e5                     	movq	%rsp, %rbp
+     514: 48 83 ec 20                  	subq	$32, %rsp
+     518: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     51c: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+     520: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+     524: 48 89 7d e8                  	movq	%rdi, -24(%rbp)
+     528: 48 81 c7 4c 05 00 00         	addq	$1356, %rdi             ## imm = 0x54C
+     52f: e8 00 00 00 00               	callq	0x534 <Hardware::GetSocName(unsigned char&)+0x24>
+     534: 48 89 c1                     	movq	%rax, %rcx
+     537: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+     53b: 88 ca                        	movb	%cl, %dl
+     53d: 48 8b 4d f0                  	movq	-16(%rbp), %rcx
+     541: 88 11                        	movb	%dl, (%rcx)
+     543: 48 05 4c 05 00 00            	addq	$1356, %rax             ## imm = 0x54C
+     549: 48 83 c4 20                  	addq	$32, %rsp
+     54d: 5d                           	popq	%rbp
+     54e: c3                           	retq
+     54f: 90                           	nop
+
+0000000000000550 <Hardware::GetReleaseId()>:
+     550: 55                           	pushq	%rbp
+     551: 48 89 e5                     	movq	%rsp, %rbp
+     554: 48 83 ec 30                  	subq	$48, %rsp
+     558: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     55c: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+     560: 48 89 7d d8                  	movq	%rdi, -40(%rbp)
+     564: 48 83 c7 0c                  	addq	$12, %rdi
+     568: 48 81 c7 00 02 00 00         	addq	$512, %rdi              ## imm = 0x200
+     56f: e8 00 00 00 00               	callq	0x574 <Hardware::GetReleaseId()+0x24>
+     574: 48 89 45 f0                  	movq	%rax, -16(%rbp)
+     578: c7 45 ec 00 00 00 00         	movl	$0, -20(%rbp)
+     57f: 48 c7 45 e0 00 00 00 00      	movq	$0, -32(%rbp)
+     587: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     58b: 48 3b 45 f0                  	cmpq	-16(%rbp), %rax
+     58f: 0f 83 54 00 00 00            	jae	0x5e9 <Hardware::GetReleaseId()+0x99>
+     595: 48 8b 45 d8                  	movq	-40(%rbp), %rax
+     599: 48 8b 4d e0                  	movq	-32(%rbp), %rcx
+     59d: 0f be bc 08 0c 02 00 00      	movsbl	524(%rax,%rcx), %edi
+     5a5: e8 00 00 00 00               	callq	0x5aa <Hardware::GetReleaseId()+0x5a>
+     5aa: 83 f8 00                     	cmpl	$0, %eax
+     5ad: 0f 84 20 00 00 00            	je	0x5d3 <Hardware::GetReleaseId()+0x83>
+     5b3: 48 8b 45 d8                  	movq	-40(%rbp), %rax
+     5b7: 6b 4d ec 0a                  	imull	$10, -20(%rbp), %ecx
+     5bb: 89 4d ec                     	movl	%ecx, -20(%rbp)
+     5be: 48 8b 4d e0                  	movq	-32(%rbp), %rcx
+     5c2: 0f be 84 08 0c 02 00 00      	movsbl	524(%rax,%rcx), %eax
+     5ca: 83 e8 30                     	subl	$48, %eax
+     5cd: 03 45 ec                     	addl	-20(%rbp), %eax
+     5d0: 89 45 ec                     	movl	%eax, -20(%rbp)
+     5d3: e9 00 00 00 00               	jmp	0x5d8 <Hardware::GetReleaseId()+0x88>
+     5d8: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     5dc: 48 83 c0 01                  	addq	$1, %rax
+     5e0: 48 89 45 e0                  	movq	%rax, -32(%rbp)
+     5e4: e9 9e ff ff ff               	jmp	0x587 <Hardware::GetReleaseId()+0x37>
+     5e9: 8b 45 ec                     	movl	-20(%rbp), %eax
+     5ec: 48 83 c4 30                  	addq	$48, %rsp
+     5f0: 5d                           	popq	%rbp
+     5f1: c3                           	retq
+     5f2: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     5fc: 0f 1f 40 00                  	nopl	(%rax)
+
+0000000000000600 <isdigit(int)>:
+     600: 55                           	pushq	%rbp
+     601: 48 89 e5                     	movq	%rsp, %rbp
+     604: 48 83 ec 10                  	subq	$16, %rsp
+     608: 89 7d fc                     	movl	%edi, -4(%rbp)
+     60b: 8b 7d fc                     	movl	-4(%rbp), %edi
+     60e: be 00 04 00 00               	movl	$1024, %esi             ## imm = 0x400
+     613: e8 00 00 00 00               	callq	0x618 <isdigit(int)+0x18>
+     618: 48 83 c4 10                  	addq	$16, %rsp
+     61c: 5d                           	popq	%rbp
+     61d: c3                           	retq
+     61e: 66 90                        	nop
+
+0000000000000620 <Hardware::GetBoardName(unsigned char&)>:
+     620: 55                           	pushq	%rbp
+     621: 48 89 e5                     	movq	%rsp, %rbp
+     624: 48 83 ec 20                  	subq	$32, %rsp
+     628: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     62c: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+     630: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+     634: 48 89 7d e8                  	movq	%rdi, -24(%rbp)
+     638: 48 81 c7 8c 05 00 00         	addq	$1420, %rdi             ## imm = 0x58C
+     63f: e8 00 00 00 00               	callq	0x644 <Hardware::GetBoardName(unsigned char&)+0x24>
+     644: 48 89 c1                     	movq	%rax, %rcx
+     647: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+     64b: 88 ca                        	movb	%cl, %dl
+     64d: 48 8b 4d f0                  	movq	-16(%rbp), %rcx
+     651: 88 11                        	movb	%dl, (%rcx)
+     653: 48 05 8c 05 00 00            	addq	$1420, %rax             ## imm = 0x58C
+     659: 48 83 c4 20                  	addq	$32, %rsp
+     65d: 5d                           	popq	%rbp
+     65e: c3                           	retq
+     65f: 90                           	nop
+
+0000000000000660 <Hardware::GetUpTime()>:
+     660: 55                           	pushq	%rbp
+     661: 48 89 e5                     	movq	%rsp, %rbp
+     664: 48 83 ec 50                  	subq	$80, %rsp
+     668: 48 8b 05 00 00 00 00         	movq	(%rip), %rax            ## 0x66f <Hardware::GetUpTime()+0xf>
+     66f: 48 8b 00                     	movq	(%rax), %rax
+     672: 48 89 45 f8                  	movq	%rax, -8(%rbp)
+     676: 48 89 7d e0                  	movq	%rdi, -32(%rbp)
+     67a: 48 c7 45 c8 10 00 00 00      	movq	$16, -56(%rbp)
+     682: 48 8b 05 37 05 00 00         	movq	1335(%rip), %rax        ## 0xbc0 <__isctype(int, unsigned long)+0x180>
+     689: 48 89 45 f0                  	movq	%rax, -16(%rbp)
+     68d: 48 8d 7d f0                  	leaq	-16(%rbp), %rdi
+     691: 48 8d 55 d0                  	leaq	-48(%rbp), %rdx
+     695: be 02 00 00 00               	movl	$2, %esi
+     69a: 48 8d 4d c8                  	leaq	-56(%rbp), %rcx
+     69e: 31 c0                        	xorl	%eax, %eax
+     6a0: 41 89 c1                     	movl	%eax, %r9d
+     6a3: 4d 89 c8                     	movq	%r9, %r8
+     6a6: e8 00 00 00 00               	callq	0x6ab <Hardware::GetUpTime()+0x4b>
+     6ab: 83 f8 00                     	cmpl	$0, %eax
+     6ae: 0f 8d 0c 00 00 00            	jge	0x6c0 <Hardware::GetUpTime()+0x60>
+     6b4: c7 45 ec 00 00 00 00         	movl	$0, -20(%rbp)
+     6bb: e9 2a 00 00 00               	jmp	0x6ea <Hardware::GetUpTime()+0x8a>
+     6c0: 48 8b 45 d0                  	movq	-48(%rbp), %rax
+     6c4: 48 89 45 c0                  	movq	%rax, -64(%rbp)
+     6c8: 31 c0                        	xorl	%eax, %eax
+     6ca: 89 c7                        	movl	%eax, %edi
+     6cc: e8 00 00 00 00               	callq	0x6d1 <Hardware::GetUpTime()+0x71>
+     6d1: 48 89 45 b8                  	movq	%rax, -72(%rbp)
+     6d5: 48 8b 7d b8                  	movq	-72(%rbp), %rdi
+     6d9: 48 8b 75 c0                  	movq	-64(%rbp), %rsi
+     6dd: e8 00 00 00 00               	callq	0x6e2 <Hardware::GetUpTime()+0x82>
+     6e2: f2 48 0f 2c c0               	cvttsd2si	%xmm0, %rax
+     6e7: 89 45 ec                     	movl	%eax, -20(%rbp)
+     6ea: 8b 45 ec                     	movl	-20(%rbp), %eax
+     6ed: 89 45 b4                     	movl	%eax, -76(%rbp)
+     6f0: 48 8b 05 00 00 00 00         	movq	(%rip), %rax            ## 0x6f7 <Hardware::GetUpTime()+0x97>
+     6f7: 48 8b 00                     	movq	(%rax), %rax
+     6fa: 48 8b 4d f8                  	movq	-8(%rbp), %rcx
+     6fe: 48 39 c8                     	cmpq	%rcx, %rax
+     701: 0f 85 09 00 00 00            	jne	0x710 <Hardware::GetUpTime()+0xb0>
+     707: 8b 45 b4                     	movl	-76(%rbp), %eax
+     70a: 48 83 c4 50                  	addq	$80, %rsp
+     70e: 5d                           	popq	%rbp
+     70f: c3                           	retq
+     710: e8 00 00 00 00               	callq	0x715 <Hardware::GetUpTime()+0xb5>
+     715: 0f 0b                        	ud2
+     717: 66 0f 1f 84 00 00 00 00 00   	nopw	(%rax,%rax)
+
+0000000000000720 <Hardware::SetSysTime(long)>:
+     720: 55                           	pushq	%rbp
+     721: 48 89 e5                     	movq	%rsp, %rbp
+     724: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     728: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+     72c: 5d                           	popq	%rbp
+     72d: c3                           	retq
+     72e: 66 90                        	nop
+
+0000000000000730 <Hardware::SetTime(tm const*)>:
+     730: 55                           	pushq	%rbp
+     731: 48 89 e5                     	movq	%rsp, %rbp
+     734: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     738: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+     73c: b0 01                        	movb	$1, %al
+     73e: 24 01                        	andb	$1, %al
+     740: 0f b6 c0                     	movzbl	%al, %eax
+     743: 5d                           	popq	%rbp
+     744: c3                           	retq
+     745: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     74f: 90                           	nop
+
+0000000000000750 <Hardware::GetTime(tm*)>:
+     750: 55                           	pushq	%rbp
+     751: 48 89 e5                     	movq	%rsp, %rbp
+     754: 48 83 ec 20                  	subq	$32, %rsp
+     758: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     75c: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+     760: 31 c0                        	xorl	%eax, %eax
+     762: 89 c7                        	movl	%eax, %edi
+     764: e8 00 00 00 00               	callq	0x769 <Hardware::GetTime(tm*)+0x19>
+     769: 48 89 45 e8                  	movq	%rax, -24(%rbp)
+     76d: 48 8d 7d e8                  	leaq	-24(%rbp), %rdi
+     771: e8 00 00 00 00               	callq	0x776 <Hardware::GetTime(tm*)+0x26>
+     776: 48 89 45 e0                  	movq	%rax, -32(%rbp)
+     77a: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     77e: 8b 48 14                     	movl	20(%rax), %ecx
+     781: 48 8b 45 f0                  	movq	-16(%rbp), %rax
+     785: 89 48 14                     	movl	%ecx, 20(%rax)
+     788: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     78c: 8b 48 10                     	movl	16(%rax), %ecx
+     78f: 48 8b 45 f0                  	movq	-16(%rbp), %rax
+     793: 89 48 10                     	movl	%ecx, 16(%rax)
+     796: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     79a: 8b 48 0c                     	movl	12(%rax), %ecx
+     79d: 48 8b 45 f0                  	movq	-16(%rbp), %rax
+     7a1: 89 48 0c                     	movl	%ecx, 12(%rax)
+     7a4: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     7a8: 8b 48 08                     	movl	8(%rax), %ecx
+     7ab: 48 8b 45 f0                  	movq	-16(%rbp), %rax
+     7af: 89 48 08                     	movl	%ecx, 8(%rax)
+     7b2: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     7b6: 8b 48 04                     	movl	4(%rax), %ecx
+     7b9: 48 8b 45 f0                  	movq	-16(%rbp), %rax
+     7bd: 89 48 04                     	movl	%ecx, 4(%rax)
+     7c0: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     7c4: 8b 08                        	movl	(%rax), %ecx
+     7c6: 48 8b 45 f0                  	movq	-16(%rbp), %rax
+     7ca: 89 08                        	movl	%ecx, (%rax)
+     7cc: 48 83 c4 20                  	addq	$32, %rsp
+     7d0: 5d                           	popq	%rbp
+     7d1: c3                           	retq
+     7d2: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     7dc: 0f 1f 40 00                  	nopl	(%rax)
+
+00000000000007e0 <Hardware::Reboot()>:
+     7e0: 55                           	pushq	%rbp
+     7e1: 48 89 e5                     	movq	%rsp, %rbp
+     7e4: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     7e8: 31 c0                        	xorl	%eax, %eax
+     7ea: 24 01                        	andb	$1, %al
+     7ec: 0f b6 c0                     	movzbl	%al, %eax
+     7ef: 5d                           	popq	%rbp
+     7f0: c3                           	retq
+     7f1: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     7fb: 0f 1f 44 00 00               	nopl	(%rax,%rax)
+
+0000000000000800 <Hardware::PowerOff()>:
+     800: 55                           	pushq	%rbp
+     801: 48 89 e5                     	movq	%rsp, %rbp
+     804: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     808: 31 c0                        	xorl	%eax, %eax
+     80a: 24 01                        	andb	$1, %al
+     80c: 0f b6 c0                     	movzbl	%al, %eax
+     80f: 5d                           	popq	%rbp
+     810: c3                           	retq
+     811: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     81b: 0f 1f 44 00 00               	nopl	(%rax,%rax)
+
+0000000000000820 <Hardware::GetCoreTemperature()>:
+     820: 55                           	pushq	%rbp
+     821: 48 89 e5                     	movq	%rsp, %rbp
+     824: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     828: f3 0f 10 05 68 02 00 00      	movss	616(%rip), %xmm0        ## xmm0 = mem[0],zero,zero,zero
+                                                                        ## 0xa98 <__isctype(int, unsigned long)+0x58>
+     830: 5d                           	popq	%rbp
+     831: c3                           	retq
+     832: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     83c: 0f 1f 40 00                  	nopl	(%rax)
+
+0000000000000840 <Hardware::GetCoreTemperatureMax()>:
+     840: 55                           	pushq	%rbp
+     841: 48 89 e5                     	movq	%rsp, %rbp
+     844: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     848: f3 0f 10 05 4c 02 00 00      	movss	588(%rip), %xmm0        ## xmm0 = mem[0],zero,zero,zero
+                                                                        ## 0xa9c <__isctype(int, unsigned long)+0x5c>
+     850: 5d                           	popq	%rbp
+     851: c3                           	retq
+     852: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     85c: 0f 1f 40 00                  	nopl	(%rax)
+
+0000000000000860 <Hardware::SetLed(hardware::LedStatus)>:
+     860: 55                           	pushq	%rbp
+     861: 48 89 e5                     	movq	%rsp, %rbp
+     864: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     868: 89 75 f4                     	movl	%esi, -12(%rbp)
+     86b: 5d                           	popq	%rbp
+     86c: c3                           	retq
+     86d: 0f 1f 00                     	nopl	(%rax)
+
+0000000000000870 <Hardware::Micros()>:
+     870: 55                           	pushq	%rbp
+     871: 48 89 e5                     	movq	%rsp, %rbp
+     874: 48 83 ec 20                  	subq	$32, %rsp
+     878: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     87c: 48 8d 7d e8                  	leaq	-24(%rbp), %rdi
+     880: 31 c0                        	xorl	%eax, %eax
+     882: 89 c6                        	movl	%eax, %esi
+     884: e8 00 00 00 00               	callq	0x889 <Hardware::Micros()+0x19>
+     889: 48 69 45 e8 40 42 0f 00      	imulq	$1000000, -24(%rbp), %rax ## imm = 0xF4240
+     891: 48 63 4d f0                  	movslq	-16(%rbp), %rcx
+     895: 48 01 c8                     	addq	%rcx, %rax
+     898: 48 83 c4 20                  	addq	$32, %rsp
+     89c: 5d                           	popq	%rbp
+     89d: c3                           	retq
+     89e: 66 90                        	nop
+
+00000000000008a0 <Hardware::Millis()>:
+     8a0: 55                           	pushq	%rbp
+     8a1: 48 89 e5                     	movq	%rsp, %rbp
+     8a4: 48 83 ec 20                  	subq	$32, %rsp
+     8a8: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     8ac: 48 8d 7d e8                  	leaq	-24(%rbp), %rdi
+     8b0: 31 c0                        	xorl	%eax, %eax
+     8b2: 89 c6                        	movl	%eax, %esi
+     8b4: e8 00 00 00 00               	callq	0x8b9 <Hardware::Millis()+0x19>
+     8b9: 48 69 45 e8 e8 03 00 00      	imulq	$1000, -24(%rbp), %rax  ## imm = 0x3E8
+     8c1: 48 89 45 e0                  	movq	%rax, -32(%rbp)
+     8c5: 48 63 45 f0                  	movslq	-16(%rbp), %rax
+     8c9: b9 e8 03 00 00               	movl	$1000, %ecx             ## imm = 0x3E8
+     8ce: 48 99                        	cqto
+     8d0: 48 f7 f9                     	idivq	%rcx
+     8d3: 48 89 c1                     	movq	%rax, %rcx
+     8d6: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     8da: 48 01 c8                     	addq	%rcx, %rax
+     8dd: 48 83 c4 20                  	addq	$32, %rsp
+     8e1: 5d                           	popq	%rbp
+     8e2: c3                           	retq
+     8e3: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     8ed: 0f 1f 00                     	nopl	(%rax)
+
+00000000000008f0 <Hardware::GetUuid(unsigned char*)>:
+     8f0: 55                           	pushq	%rbp
+     8f1: 48 89 e5                     	movq	%rsp, %rbp
+     8f4: 48 83 ec 60                  	subq	$96, %rsp
+     8f8: 48 8b 05 00 00 00 00         	movq	(%rip), %rax            ## 0x8ff <Hardware::GetUuid(unsigned char*)+0xf>
+     8ff: 48 8b 00                     	movq	(%rax), %rax
+     902: 48 89 45 f8                  	movq	%rax, -8(%rbp)
+     906: 48 89 7d a8                  	movq	%rdi, -88(%rbp)
+     90a: 48 89 75 a0                  	movq	%rsi, -96(%rbp)
+     90e: 48 8b 7d a8                  	movq	-88(%rbp), %rdi
+     912: 48 8b 05 67 02 00 00         	movq	615(%rip), %rax         ## 0xb80 <__isctype(int, unsigned long)+0x140>
+     919: 48 89 45 b0                  	movq	%rax, -80(%rbp)
+     91d: 48 8b 05 08 00 00 00         	movq	8(%rip), %rax           ## 0x92c <Hardware::GetUuid(unsigned char*)+0x3c>
+     924: 48 89 45 b8                  	movq	%rax, -72(%rbp)
+     928: 8b 05 10 00 00 00            	movl	16(%rip), %eax          ## 0x93e <Hardware::GetUuid(unsigned char*)+0x4e>
+     92e: 89 45 c0                     	movl	%eax, -64(%rbp)
+     931: 48 8d 75 b0                  	leaq	-80(%rbp), %rsi
+     935: 48 8d 55 d0                  	leaq	-48(%rbp), %rdx
+     939: b9 26 00 00 00               	movl	$38, %ecx
+     93e: e8 00 00 00 00               	callq	0x943 <Hardware::GetUuid(unsigned char*)+0x53>
+     943: 48 8d 7d d0                  	leaq	-48(%rbp), %rdi
+     947: 48 8b 75 a0                  	movq	-96(%rbp), %rsi
+     94b: e8 00 00 00 00               	callq	0x950 <Hardware::GetUuid(unsigned char*)+0x60>
+     950: 48 8b 05 00 00 00 00         	movq	(%rip), %rax            ## 0x957 <Hardware::GetUuid(unsigned char*)+0x67>
+     957: 48 8b 00                     	movq	(%rax), %rax
+     95a: 48 8b 4d f8                  	movq	-8(%rbp), %rcx
+     95e: 48 39 c8                     	cmpq	%rcx, %rax
+     961: 0f 85 06 00 00 00            	jne	0x96d <Hardware::GetUuid(unsigned char*)+0x7d>
+     967: 48 83 c4 60                  	addq	$96, %rsp
+     96b: 5d                           	popq	%rbp
+     96c: c3                           	retq
+     96d: e8 00 00 00 00               	callq	0x972 <Hardware::GetUuid(unsigned char*)+0x82>
+     972: 0f 0b                        	ud2
+     974: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     97e: 66 90                        	nop
+
+0000000000000980 <Hardware::Print()>:
+     980: 55                           	pushq	%rbp
+     981: 48 89 e5                     	movq	%rsp, %rbp
+     984: 48 83 ec 50                  	subq	$80, %rsp
+     988: 48 8b 05 00 00 00 00         	movq	(%rip), %rax            ## 0x98f <Hardware::Print()+0xf>
+     98f: 48 8b 00                     	movq	(%rax), %rax
+     992: 48 89 45 f8                  	movq	%rax, -8(%rbp)
+     996: 48 89 7d b8                  	movq	%rdi, -72(%rbp)
+     99a: 48 8b 7d b8                  	movq	-72(%rbp), %rdi
+     99e: 48 89 7d b0                  	movq	%rdi, -80(%rbp)
+     9a2: c6 45 f4 00                  	movb	$0, -12(%rbp)
+     9a6: 48 8d 75 c0                  	leaq	-64(%rbp), %rsi
+     9aa: e8 00 00 00 00               	callq	0x9af <Hardware::Print()+0x2f>
+     9af: 48 8d 7d c0                  	leaq	-64(%rbp), %rdi
+     9b3: 48 8d 75 d0                  	leaq	-48(%rbp), %rsi
+     9b7: e8 00 00 00 00               	callq	0x9bc <Hardware::Print()+0x3c>
+     9bc: 48 8b 75 b0                  	movq	-80(%rbp), %rsi
+     9c0: 48 81 c6 0c 05 00 00         	addq	$1292, %rsi             ## imm = 0x50C
+     9c7: 48 8d 3d c6 01 00 00         	leaq	454(%rip), %rdi         ## 0xb94 <__isctype(int, unsigned long)+0x154>
+     9ce: b0 00                        	movb	$0, %al
+     9d0: e8 00 00 00 00               	callq	0x9d5 <Hardware::Print()+0x55>
+     9d5: 48 8b 75 b0                  	movq	-80(%rbp), %rsi
+     9d9: 48 81 c6 4c 05 00 00         	addq	$1356, %rsi             ## imm = 0x54C
+     9e0: 48 8d 3d b8 01 00 00         	leaq	440(%rip), %rdi         ## 0xb9f <__isctype(int, unsigned long)+0x15f>
+     9e7: b0 00                        	movb	$0, %al
+     9e9: e8 00 00 00 00               	callq	0x9ee <Hardware::Print()+0x6e>
+     9ee: 48 8b 75 b0                  	movq	-80(%rbp), %rsi
+     9f2: 48 81 c6 8c 05 00 00         	addq	$1420, %rsi             ## imm = 0x58C
+     9f9: 48 8d 3d aa 01 00 00         	leaq	426(%rip), %rdi         ## 0xbaa <__isctype(int, unsigned long)+0x16a>
+     a00: b0 00                        	movb	$0, %al
+     a02: e8 00 00 00 00               	callq	0xa07 <Hardware::Print()+0x87>
+     a07: 48 8d 75 d0                  	leaq	-48(%rbp), %rsi
+     a0b: 48 8d 3d a3 01 00 00         	leaq	419(%rip), %rdi         ## 0xbb5 <__isctype(int, unsigned long)+0x175>
+     a12: b0 00                        	movb	$0, %al
+     a14: e8 00 00 00 00               	callq	0xa19 <Hardware::Print()+0x99>
+     a19: 48 8b 05 00 00 00 00         	movq	(%rip), %rax            ## 0xa20 <Hardware::Print()+0xa0>
+     a20: 48 8b 00                     	movq	(%rax), %rax
+     a23: 48 8b 4d f8                  	movq	-8(%rbp), %rcx
+     a27: 48 39 c8                     	cmpq	%rcx, %rax
+     a2a: 0f 85 06 00 00 00            	jne	0xa36 <Hardware::Print()+0xb6>
+     a30: 48 83 c4 50                  	addq	$80, %rsp
+     a34: 5d                           	popq	%rbp
+     a35: c3                           	retq
+     a36: e8 00 00 00 00               	callq	0xa3b <Hardware::Print()+0xbb>
+     a3b: 0f 0b                        	ud2
+     a3d: 0f 1f 00                     	nopl	(%rax)
+
+0000000000000a40 <__isctype(int, unsigned long)>:
+     a40: 55                           	pushq	%rbp
+     a41: 48 89 e5                     	movq	%rsp, %rbp
+     a44: 89 7d fc                     	movl	%edi, -4(%rbp)
+     a47: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+     a4b: 83 7d fc 00                  	cmpl	$0, -4(%rbp)
+     a4f: 0f 8c 0d 00 00 00            	jl	0xa62 <__isctype(int, unsigned long)+0x22>
+     a55: 81 7d fc 00 01 00 00         	cmpl	$256, -4(%rbp)          ## imm = 0x100
+     a5c: 0f 8c 0a 00 00 00            	jl	0xa6c <__isctype(int, unsigned long)+0x2c>
+     a62: 31 c0                        	xorl	%eax, %eax
+     a64: 89 45 ec                     	movl	%eax, -20(%rbp)
+     a67: e9 26 00 00 00               	jmp	0xa92 <__isctype(int, unsigned long)+0x52>
+     a6c: 48 63 4d fc                  	movslq	-4(%rbp), %rcx
+     a70: 48 8b 05 00 00 00 00         	movq	(%rip), %rax            ## 0xa77 <__isctype(int, unsigned long)+0x37>
+     a77: 8b 44 88 3c                  	movl	60(%rax,%rcx,4), %eax
+     a7b: 48 23 45 f0                  	andq	-16(%rbp), %rax
+     a7f: 48 83 f8 00                  	cmpq	$0, %rax
+     a83: 0f 95 c0                     	setne	%al
+     a86: 34 ff                        	xorb	$-1, %al
+     a88: 34 ff                        	xorb	$-1, %al
+     a8a: 24 01                        	andb	$1, %al
+     a8c: 0f b6 c0                     	movzbl	%al, %eax
+     a8f: 89 45 ec                     	movl	%eax, -20(%rbp)
+     a92: 8b 45 ec                     	movl	-20(%rbp), %eax
+     a95: 5d                           	popq	%rbp
+     a96: c3                           	retq
+
+lib_linux/libhal.a(ledblink.o):	file format mach-o 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+
+0000000000000000 <LedBlink::SetFrequency(unsigned int)>:
+       0: 55                           	pushq	%rbp
+       1: 48 89 e5                     	movq	%rsp, %rbp
+       4: 48 83 ec 10                  	subq	$16, %rsp
+       8: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+       c: 89 75 f4                     	movl	%esi, -12(%rbp)
+       f: 48 8b 45 f8                  	movq	-8(%rbp), %rax
+      13: 8b 4d f4                     	movl	-12(%rbp), %ecx
+      16: 89 08                        	movl	%ecx, (%rax)
+      18: 83 7d f4 00                  	cmpl	$0, -12(%rbp)
+      1c: 0f 85 14 00 00 00            	jne	0x36 <LedBlink::SetFrequency(unsigned int)+0x36>
+      22: e8 00 00 00 00               	callq	0x27 <LedBlink::SetFrequency(unsigned int)+0x27>
+      27: 48 89 c7                     	movq	%rax, %rdi
+      2a: 31 f6                        	xorl	%esi, %esi
+      2c: e8 00 00 00 00               	callq	0x31 <LedBlink::SetFrequency(unsigned int)+0x31>
+      31: e9 5e 00 00 00               	jmp	0x94 <LedBlink::SetFrequency(unsigned int)+0x94>
+      36: 83 7d f4 14                  	cmpl	$20, -12(%rbp)
+      3a: 0f 86 17 00 00 00            	jbe	0x57 <LedBlink::SetFrequency(unsigned int)+0x57>
+      40: e8 00 00 00 00               	callq	0x45 <LedBlink::SetFrequency(unsigned int)+0x45>
+      45: 48 89 c7                     	movq	%rax, %rdi
+      48: be 01 00 00 00               	movl	$1, %esi
+      4d: e8 00 00 00 00               	callq	0x52 <LedBlink::SetFrequency(unsigned int)+0x52>
+      52: e9 38 00 00 00               	jmp	0x8f <LedBlink::SetFrequency(unsigned int)+0x8f>
+      57: 83 7d f4 01                  	cmpl	$1, -12(%rbp)
+      5b: 0f 86 17 00 00 00            	jbe	0x78 <LedBlink::SetFrequency(unsigned int)+0x78>
+      61: e8 00 00 00 00               	callq	0x66 <LedBlink::SetFrequency(unsigned int)+0x66>
+      66: 48 89 c7                     	movq	%rax, %rdi
+      69: be 02 00 00 00               	movl	$2, %esi
+      6e: e8 00 00 00 00               	callq	0x73 <LedBlink::SetFrequency(unsigned int)+0x73>
+      73: e9 12 00 00 00               	jmp	0x8a <LedBlink::SetFrequency(unsigned int)+0x8a>
+      78: e8 00 00 00 00               	callq	0x7d <LedBlink::SetFrequency(unsigned int)+0x7d>
+      7d: 48 89 c7                     	movq	%rax, %rdi
+      80: be 03 00 00 00               	movl	$3, %esi
+      85: e8 00 00 00 00               	callq	0x8a <LedBlink::SetFrequency(unsigned int)+0x8a>
+      8a: e9 00 00 00 00               	jmp	0x8f <LedBlink::SetFrequency(unsigned int)+0x8f>
+      8f: e9 00 00 00 00               	jmp	0x94 <LedBlink::SetFrequency(unsigned int)+0x94>
+      94: 48 83 c4 10                  	addq	$16, %rsp
+      98: 5d                           	popq	%rbp
+      99: c3                           	retq
+      9a: 66 0f 1f 44 00 00            	nopw	(%rax,%rax)
+
+00000000000000a0 <Hardware::Get()>:
+      a0: 55                           	pushq	%rbp
+      a1: 48 89 e5                     	movq	%rsp, %rbp
+      a4: 48 8b 05 00 00 00 00         	movq	(%rip), %rax            ## 0xab <Hardware::Get()+0xb>
+      ab: 48 8b 00                     	movq	(%rax), %rax
+      ae: 5d                           	popq	%rbp
+      af: c3                           	retq
+
+lib_linux/libhal.a(i2cdetect.o):	file format mach-o 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+
+0000000000000000 <I2cDetect::I2cDetect()>:
+       0: 55                           	pushq	%rbp
+       1: 48 89 e5                     	movq	%rsp, %rbp
+       4: 48 83 ec 10                  	subq	$16, %rsp
+       8: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+       c: bf a0 86 01 00               	movl	$100000, %edi           ## imm = 0x186A0
+      11: e8 00 00 00 00               	callq	0x16 <I2cDetect::I2cDetect()+0x16>
+      16: 48 8d 3d 05 02 00 00         	leaq	517(%rip), %rdi         ## 0x222 <i2c_write(char const*, unsigned int)+0x12>
+      1d: e8 00 00 00 00               	callq	0x22 <I2cDetect::I2cDetect()+0x22>
+      22: c7 45 f4 00 00 00 00         	movl	$0, -12(%rbp)
+      29: 81 7d f4 80 00 00 00         	cmpl	$128, -12(%rbp)
+      30: 0f 83 c2 00 00 00            	jae	0xf8 <I2cDetect::I2cDetect()+0xf8>
+      36: 8b 75 f4                     	movl	-12(%rbp), %esi
+      39: 48 8d 3d 17 02 00 00         	leaq	535(%rip), %rdi         ## 0x257 <i2c_write(char const*, unsigned int)+0x47>
+      40: b0 00                        	movb	$0, %al
+      42: e8 00 00 00 00               	callq	0x47 <I2cDetect::I2cDetect()+0x47>
+      47: c7 45 f0 00 00 00 00         	movl	$0, -16(%rbp)
+      4e: 83 7d f0 10                  	cmpl	$16, -16(%rbp)
+      52: 0f 83 86 00 00 00            	jae	0xde <I2cDetect::I2cDetect()+0xde>
+      58: 8b 45 f4                     	movl	-12(%rbp), %eax
+      5b: 03 45 f0                     	addl	-16(%rbp), %eax
+      5e: 83 f8 03                     	cmpl	$3, %eax
+      61: 0f 82 0f 00 00 00            	jb	0x76 <I2cDetect::I2cDetect()+0x76>
+      67: 8b 45 f4                     	movl	-12(%rbp), %eax
+      6a: 03 45 f0                     	addl	-16(%rbp), %eax
+      6d: 83 f8 77                     	cmpl	$119, %eax
+      70: 0f 86 13 00 00 00            	jbe	0x89 <I2cDetect::I2cDetect()+0x89>
+      76: 48 8d 3d e1 01 00 00         	leaq	481(%rip), %rdi         ## 0x25e <i2c_write(char const*, unsigned int)+0x4e>
+      7d: b0 00                        	movb	$0, %al
+      7f: e8 00 00 00 00               	callq	0x84 <I2cDetect::I2cDetect()+0x84>
+      84: e9 47 00 00 00               	jmp	0xd0 <I2cDetect::I2cDetect()+0xd0>
+      89: 8b 45 f4                     	movl	-12(%rbp), %eax
+      8c: 03 45 f0                     	addl	-16(%rbp), %eax
+      8f: 0f b6 f8                     	movzbl	%al, %edi
+      92: e8 00 00 00 00               	callq	0x97 <I2cDetect::I2cDetect()+0x97>
+      97: a8 01                        	testb	$1, %al
+      99: 0f 85 05 00 00 00            	jne	0xa4 <I2cDetect::I2cDetect()+0xa4>
+      9f: e9 19 00 00 00               	jmp	0xbd <I2cDetect::I2cDetect()+0xbd>
+      a4: 8b 75 f4                     	movl	-12(%rbp), %esi
+      a7: 03 75 f0                     	addl	-16(%rbp), %esi
+      aa: 48 8d 3d b1 01 00 00         	leaq	433(%rip), %rdi         ## 0x262 <i2c_write(char const*, unsigned int)+0x52>
+      b1: b0 00                        	movb	$0, %al
+      b3: e8 00 00 00 00               	callq	0xb8 <I2cDetect::I2cDetect()+0xb8>
+      b8: e9 0e 00 00 00               	jmp	0xcb <I2cDetect::I2cDetect()+0xcb>
+      bd: 48 8d 3d a4 01 00 00         	leaq	420(%rip), %rdi         ## 0x268 <i2c_write(char const*, unsigned int)+0x58>
+      c4: b0 00                        	movb	$0, %al
+      c6: e8 00 00 00 00               	callq	0xcb <I2cDetect::I2cDetect()+0xcb>
+      cb: e9 00 00 00 00               	jmp	0xd0 <I2cDetect::I2cDetect()+0xd0>
+      d0: 8b 45 f0                     	movl	-16(%rbp), %eax
+      d3: 83 c0 01                     	addl	$1, %eax
+      d6: 89 45 f0                     	movl	%eax, -16(%rbp)
+      d9: e9 70 ff ff ff               	jmp	0x4e <I2cDetect::I2cDetect()+0x4e>
+      de: 48 8d 3d 87 01 00 00         	leaq	391(%rip), %rdi         ## 0x26c <i2c_write(char const*, unsigned int)+0x5c>
+      e5: e8 00 00 00 00               	callq	0xea <I2cDetect::I2cDetect()+0xea>
+      ea: 8b 45 f4                     	movl	-12(%rbp), %eax
+      ed: 83 c0 10                     	addl	$16, %eax
+      f0: 89 45 f4                     	movl	%eax, -12(%rbp)
+      f3: e9 31 ff ff ff               	jmp	0x29 <I2cDetect::I2cDetect()+0x29>
+      f8: e8 00 00 00 00               	callq	0xfd <I2cDetect::I2cDetect()+0xfd>
+      fd: 48 83 c4 10                  	addq	$16, %rsp
+     101: 5d                           	popq	%rbp
+     102: c3                           	retq
+     103: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     10d: 0f 1f 00                     	nopl	(%rax)
+
+0000000000000110 <i2c_set_baudrate(unsigned int)>:
+     110: 55                           	pushq	%rbp
+     111: 48 89 e5                     	movq	%rsp, %rbp
+     114: 89 7d fc                     	movl	%edi, -4(%rbp)
+     117: 5d                           	popq	%rbp
+     118: c3                           	retq
+     119: 0f 1f 80 00 00 00 00         	nopl	(%rax)
+
+0000000000000120 <i2c_is_connected(unsigned char)>:
+     120: 55                           	pushq	%rbp
+     121: 48 89 e5                     	movq	%rsp, %rbp
+     124: 48 83 ec 10                  	subq	$16, %rsp
+     128: 40 88 f8                     	movb	%dil, %al
+     12b: 88 45 ff                     	movb	%al, -1(%rbp)
+     12e: 0f b6 7d ff                  	movzbl	-1(%rbp), %edi
+     132: e8 00 00 00 00               	callq	0x137 <i2c_is_connected(unsigned char)+0x17>
+     137: 0f b6 45 ff                  	movzbl	-1(%rbp), %eax
+     13b: 83 f8 30                     	cmpl	$48, %eax
+     13e: 0f 8c 0d 00 00 00            	jl	0x151 <i2c_is_connected(unsigned char)+0x31>
+     144: 0f b6 45 ff                  	movzbl	-1(%rbp), %eax
+     148: 83 f8 37                     	cmpl	$55, %eax
+     14b: 0f 8e 1a 00 00 00            	jle	0x16b <i2c_is_connected(unsigned char)+0x4b>
+     151: 0f b6 45 ff                  	movzbl	-1(%rbp), %eax
+     155: 83 f8 50                     	cmpl	$80, %eax
+     158: 0f 8c 23 00 00 00            	jl	0x181 <i2c_is_connected(unsigned char)+0x61>
+     15e: 0f b6 45 ff                  	movzbl	-1(%rbp), %eax
+     162: 83 f8 5f                     	cmpl	$95, %eax
+     165: 0f 8f 16 00 00 00            	jg	0x181 <i2c_is_connected(unsigned char)+0x61>
+     16b: 48 8d 7d fd                  	leaq	-3(%rbp), %rdi
+     16f: be 01 00 00 00               	movl	$1, %esi
+     174: e8 00 00 00 00               	callq	0x179 <i2c_is_connected(unsigned char)+0x59>
+     179: 88 45 fe                     	movb	%al, -2(%rbp)
+     17c: e9 0e 00 00 00               	jmp	0x18f <i2c_is_connected(unsigned char)+0x6f>
+     181: 31 c0                        	xorl	%eax, %eax
+     183: 89 c7                        	movl	%eax, %edi
+     185: 31 f6                        	xorl	%esi, %esi
+     187: e8 00 00 00 00               	callq	0x18c <i2c_is_connected(unsigned char)+0x6c>
+     18c: 88 45 fe                     	movb	%al, -2(%rbp)
+     18f: 8a 45 fe                     	movb	-2(%rbp), %al
+     192: 2c 01                        	subb	$1, %al
+     194: 19 c0                        	sbbl	%eax, %eax
+     196: 24 01                        	andb	$1, %al
+     198: 0f b6 c0                     	movzbl	%al, %eax
+     19b: 48 83 c4 10                  	addq	$16, %rsp
+     19f: 5d                           	popq	%rbp
+     1a0: c3                           	retq
+     1a1: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     1ab: 0f 1f 44 00 00               	nopl	(%rax,%rax)
+
+00000000000001b0 <i2c_begin()>:
+     1b0: 55                           	pushq	%rbp
+     1b1: 48 89 e5                     	movq	%rsp, %rbp
+     1b4: 5d                           	popq	%rbp
+     1b5: c3                           	retq
+     1b6: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+
+00000000000001c0 <I2cDetect::I2cDetect()>:
+     1c0: 55                           	pushq	%rbp
+     1c1: 48 89 e5                     	movq	%rsp, %rbp
+     1c4: 48 83 ec 10                  	subq	$16, %rsp
+     1c8: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     1cc: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+     1d0: e8 00 00 00 00               	callq	0x1d5 <I2cDetect::I2cDetect()+0x15>
+     1d5: 48 83 c4 10                  	addq	$16, %rsp
+     1d9: 5d                           	popq	%rbp
+     1da: c3                           	retq
+     1db: 0f 1f 44 00 00               	nopl	(%rax,%rax)
+
+00000000000001e0 <i2c_set_address(unsigned char)>:
+     1e0: 55                           	pushq	%rbp
+     1e1: 48 89 e5                     	movq	%rsp, %rbp
+     1e4: 40 88 f8                     	movb	%dil, %al
+     1e7: 88 45 ff                     	movb	%al, -1(%rbp)
+     1ea: 5d                           	popq	%rbp
+     1eb: c3                           	retq
+     1ec: 0f 1f 40 00                  	nopl	(%rax)
+
+00000000000001f0 <i2c_read(char const*, unsigned int)>:
+     1f0: 55                           	pushq	%rbp
+     1f1: 48 89 e5                     	movq	%rsp, %rbp
+     1f4: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     1f8: 89 75 f4                     	movl	%esi, -12(%rbp)
+     1fb: b0 01                        	movb	$1, %al
+     1fd: 0f b6 c0                     	movzbl	%al, %eax
+     200: 5d                           	popq	%rbp
+     201: c3                           	retq
+     202: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+     20c: 0f 1f 40 00                  	nopl	(%rax)
+
+0000000000000210 <i2c_write(char const*, unsigned int)>:
+     210: 55                           	pushq	%rbp
+     211: 48 89 e5                     	movq	%rsp, %rbp
+     214: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     218: 89 75 f4                     	movl	%esi, -12(%rbp)
+     21b: b0 01                        	movb	$1, %al
+     21d: 0f b6 c0                     	movzbl	%al, %eax
+     220: 5d                           	popq	%rbp
+     221: c3                           	retq
