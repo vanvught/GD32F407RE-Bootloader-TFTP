@@ -51,11 +51,11 @@ File: `flashcodeinstall.h`
 	#  define FIRMWARE_MAX_SIZE (106 * 1024)	// 106K
 The 1K difference is needed for other `new` (`malloc`) within the bootloader.
 
-The change to be made in your build configuration is in the file `gd32f407_flash.ld `. 
+The change to be made in your build configuration is in the file `gd32f407re_flash.ld `. 
 
 	MEMORY
 	{
-	  FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 32K
+	  FLASH (rx)      : ORIGIN = 0x08008000, LENGTH = 106K
 	  TCMSRAM (rw)    : ORIGIN = 0x10000000, LENGTH = 64K
 	  RAM (xrw)       : ORIGIN = 0x20000000, LENGTH = 128K
 	  RAMADD (xrw)    : ORIGIN = 0x20030000, LENGTH = 0
