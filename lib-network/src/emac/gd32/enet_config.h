@@ -1,5 +1,5 @@
 /**
- * @file ntpclientdisplay.cpp
+ * enet_config.h
  *
  */
 /* Copyright (C) 2022 by Arjan van Vught mailto:info@gd32-dmx.org
@@ -23,8 +23,28 @@
  * THE SOFTWARE.
  */
 
+#ifndef ENET_CONFIG_H_
+#define ENET_CONFIG_H_
 
-#include "ntpclient.h"
+#if !defined (GD32_H_)
+# error gd32.h should be included first
+#endif
 
-void NtpClientDisplay::ShowNtpClientStatus(ntpclient::Status nStatus) {
-}
+#if(PHY_TYPE == LAN8700)
+
+#elif(PHY_TYPE == DP83848)
+# define PHY_REG_MICR				0x11U
+# define PHY_REG_MISR				0x12U
+# define PHY_INT_AND_OUTPUT_ENABLE	0x03U
+# define PHY_LINK_INT_ENABLE		0x20U
+#elif(PHY_TYPE == RTL8201F)
+# define PHY_REG_IER				0x13
+# define PHY_REG_IER_INT_ENABLE		BIT(13)
+# define PHY_REG_ISR				0x1e
+# define PHY_REG_ISR_LINK			BIT(11)
+# define PHY_REG_PAGE_SELECT		0x1f
+#else
+#error PHY_TYPE is not set
+#endif
+
+#endif /* ENET_CONFIG_H_ */
