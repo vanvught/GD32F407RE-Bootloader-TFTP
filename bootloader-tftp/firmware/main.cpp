@@ -2,7 +2,7 @@
  * @file main.cpp
  *
  */
-/* Copyright (C) 2022 by Arjan van Vught mailto:info@gd32-dmx.nl
+/* Copyright (C) 2022-2023 by Arjan van Vught mailto:info@gd32-dmx.nl
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,6 @@
 #include "networkconst.h"
 #include "storenetwork.h"
 #include "display.h"
-#include "ledblink.h"
 
 #include "remoteconfig.h"
 #include "remoteconfigparams.h"
@@ -64,7 +63,10 @@ int main(void) {
     gpio_mode_set(KEY_BOOTLOADER_TFTP_GPIOx, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, KEY_BOOTLOADER_TFTP_GPIO_PINx);
 #endif
 
-    if ((bkp_data_read(BKP_DATA_1) != 0xA5A5) && (gpio_input_bit_get(KEY_BOOTLOADER_TFTP_GPIOx, KEY_BOOTLOADER_TFTP_GPIO_PINx))) {
+    const auto isNotRemote = (bkp_data_read(BKP_DATA_1) != 0xA5A5);
+    const auto isNotKey =  (gpio_input_bit_get(KEY_BOOTLOADER_TFTP_GPIOx, KEY_BOOTLOADER_TFTP_GPIO_PINx));
+
+    if (isNotRemote && isNotKey) {
     	// https://developer.arm.com/documentation/ka001423/1-0
     	//1. Disable interrupt response.
     	__disable_irq();
@@ -97,9 +99,9 @@ int main(void) {
 	Hardware hw;
 	Network nw;
 	Display display(4);
-	LedBlink lb;
 	FirmwareVersion fw(SOFTWARE_VERSION, __DATE__, __TIME__);
 
+	printf("Remote=%c, Key=%c\n", isNotRemote ? 'N' : 'Y', isNotKey ? 'N' : 'Y');
 	fw.Print("Bootloader TFTP Server");
 
 	FlashCodeInstall flashCodeInstall;
@@ -110,7 +112,7 @@ int main(void) {
 	nw.Init(&storeNetwork);
 	nw.Print();
 
-	lb.SetMode(ledblink::Mode::OFF_ON);
+	hw.SetMode(hardware::ledblink::Mode::OFF_ON);
 
 	RemoteConfig remoteConfig(remoteconfig::Node::BOOTLOADER_TFTP, remoteconfig::Output::CONFIG);
 
@@ -123,16 +125,15 @@ int main(void) {
 
 	remoteConfig.SetEnableReboot(true);
 
-	lb.SetMode(ledblink::Mode::FAST);
-
 	display.Printf(3, "Bootloader TFTP Srvr");
 
+	hw.SetMode(hardware::ledblink::Mode::FAST);
 	hw.WatchdogInit();
 
 	while (1) {
 		hw.WatchdogFeed();
 		nw.Run();
 		remoteConfig.Run();
-		lb.Run();
+		hw.Run();
 	}
 }

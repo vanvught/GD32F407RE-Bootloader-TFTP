@@ -6,8 +6,9 @@ AS	= $(CC)
 LD	= $(PREFIX)ld
 AR	= $(PREFIX)ar
 
-FAMILY?=gd32f4xx
 BOARD?=BOARD_GD32F407RE
+ENET_PHY?=DP83848
+FAMILY?=gd32f4xx
 MCU?=gd32f407
 
 FAMILY:=$(shell echo $(FAMILY) | tr A-Z a-z)
@@ -26,12 +27,11 @@ ifeq ($(findstring DMX4,$(BOARD)), DMX4)
 	DEFINES+=-DCONSOLE_I2C
 endif
 
-COPS=-DBARE_METAL -DGD32 -DGD32F407 -D$(BOARD)
+COPS=-DBARE_METAL -DGD32 -DGD32F407 -D$(BOARD) -DPHY_TYPE=$(ENET_PHY)
 COPS+=$(DEFINES) $(MAKE_FLAGS) $(INCLUDES)
 COPS+=-Os -mcpu=cortex-m4 -mfloat-abi=softfp -mthumb
 COPS+=-nostartfiles -ffreestanding -nostdlib
-COPS+=-fstack-usage
-COPS+=-Wstack-usage=1024
+COPS+=-fstack-usage -Wstack-usage=1024
 COPS+=-ffunction-sections -fdata-sections
 
 CPPOPS=-std=c++11 

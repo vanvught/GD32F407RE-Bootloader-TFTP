@@ -49,4 +49,5 @@
 */lib_gd32/*
 
 *.bin
-
+*.map
+*.list
