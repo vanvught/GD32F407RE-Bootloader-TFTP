@@ -31,12 +31,7 @@ The bootloader can be installed with the tools supplied by GigaDevice -> [http:/
 
 The limitation for the firmware file to be uploaded is given by the RAM available. For example, the MCU on [https://github.com/vanvught/GD32FxxR-dev-board](https://github.com/vanvught/GD32FxxxR-dev-board) is the [GD32F407RE](https://www.gigadevice.com/microcontroller/gd32f407re6/). With the 128K RAM we have the firmware file size limit of 106K.
 
-There are 2 places for this configuration:
-
-File: `gd32f407_flash.ld`
-
-	  __heap_size = DEFINED(__heap_size) ? __heap_size : 107K;
-	  __stack_size = DEFINED(__stack_size) ? __stack_size : 1K;
+See also [https://www.gd32-dmx.org/bootloader.html](https://www.gd32-dmx.org/bootloader.html)
 
 File: `flashcodeinstall.h`
 
@@ -49,7 +44,6 @@ File: `flashcodeinstall.h`
 	# elif defined (BOARD_DMX4)
 	#  define OFFSET_UIMAGE		0x008000		// 32K
 	#  define FIRMWARE_MAX_SIZE (106 * 1024)	// 106K
-The 1K difference is needed for other `new` (`malloc`) within the bootloader.
 
 The change to be made in your build configuration is in the file `gd32f407re_flash.ld `. 
 
