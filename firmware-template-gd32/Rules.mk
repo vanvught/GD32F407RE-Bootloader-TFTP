@@ -35,9 +35,6 @@ LIBS+=c++ c gd32
 $(info [${LIBS}])
 	
 DEFINES:=$(addprefix -D,$(DEFINES))
-ifeq ($(findstring DMX4,$(BOARD)), DMX4)
-	DEFINES+=-DCONSOLE_I2C
-endif
 
 include ../firmware-template-gd32/Includes.mk
 
@@ -121,7 +118,9 @@ lisdep: $(LIBDEP)
 $(LIBDEP):
 	$(MAKE) -f Makefile.GD32 $(MAKECMDGOALS) 'FAMILY=${FAMILY}' 'BOARD=${BOARD}' 'PHY_TYPE=${ENET_PHY}' 'MAKE_FLAGS=$(DEFINES)' -C $@ 
 
+#
 # Build bin
+#
 
 $(BUILD_DIRS) :
 	mkdir -p $(BUILD_DIRS)
@@ -132,9 +131,14 @@ $(BUILD)startup_$(MCU).o : $(FIRMWARE_DIR)/startup_$(MCU).S
 $(BUILD)main.elf: Makefile.GD32 $(LINKER) $(BUILD)startup_$(MCU).o $(OBJECTS) $(LIBDEP)
 	$(LD) $(BUILD)startup_$(MCU).o $(OBJECTS) -Map $(MAP) -T $(LINKER) $(LDOPS) -o $(BUILD)main.elf $(LIBGD32) $(LDLIBS) $(PLATFORM_LIBGCC) -lgcc 
 	$(PREFIX)objdump -D $(BUILD)main.elf | $(PREFIX)c++filt > $(LIST)
-	$(PREFIX)size -A -x $(BUILD)main.elf
+	$(PREFIX)size -A -x $(BUILD)main.elf > $(FAMILY).size
+	$(MAKE) -f Makefile.GD32 calculate_unused_ram SIZE_FILE=$(FAMILY).size LINKER_SCRIPT=$(LINKER)
 
 $(TARGET) : $(BUILD)main.elf 
 	$(PREFIX)objcopy $(BUILD)main.elf --remove-section=.tcmsram* --remove-section=.bkpsram* -O binary $(TARGET)
 	
 $(foreach bdir,$(SRCDIR),$(eval $(call compile-objects,$(bdir))))
+
+.PHONY: calculate_unused_ram
+calculate_unused_ram: $(FAMILY).size $(LINKER)
+	@$(FIRMWARE_DIR)/calculate_unused_ram.sh $(FAMILY).size $(LINKER)

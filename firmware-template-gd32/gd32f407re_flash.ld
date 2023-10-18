@@ -12,7 +12,7 @@ ENTRY(Reset_Handler)
 SECTIONS
 {
   __heap_size = DEFINED(__heap_size) ? __heap_size : 1K;
-  __stack_size = DEFINED(__stack_size) ? __stack_size : 1K;
+  __stack_size = DEFINED(__stack_size) ? __stack_size : 2K;
 
   .vectors :
   {
@@ -33,10 +33,8 @@ SECTIONS
 	*(.glue_7)
 	*(.glue_7t)
 	*(.eh_frame)
-
     KEEP (*(.init))
     KEEP (*(.fini))
-
     . = ALIGN(4);
     _etext = .;
   } >FLASH
@@ -48,19 +46,6 @@ SECTIONS
     *(.rodata*)
     . = ALIGN(4);
   } >FLASH
-
-   .ARM.extab :
-  { 
-     *(.ARM.extab* .gnu.linkonce.armextab.*) 
-  } >FLASH
-  
-    .ARM : {
-    __exidx_start = .;
-    *(.ARM.exidx*)
-    __exidx_end = .;
-    } >FLASH
-
-  .ARM.attributes : { *(.ARM.attributes) } > FLASH
 
   .preinit_array :
   {
@@ -84,7 +69,7 @@ SECTIONS
     KEEP (*(SORT(.fini_array.*)))
     PROVIDE_HIDDEN (__fini_array_end = .);
   } >FLASH
-
+  
   _sidata = LOADADDR(.data);
   .data :
   {
@@ -95,26 +80,6 @@ SECTIONS
     . = ALIGN(4);
     _edata = .;
   } >RAM AT> FLASH
-  
-  .tcmsram :
-  {
-  	_stcmsram = .;
-  	. = ALIGN(4);
-    *(.tcmsram)
-    *(.tcmsram*)
-    *(.lightset*)
-    *(.network*)
-    . = ALIGN(4);
-     _etcmsram = .;
-  } >TCMSRAM AT>TCMSRAM
-
-  .stack ORIGIN(TCMSRAM) + LENGTH(TCMSRAM) - __stack_size :
-  {
-	. = ALIGN(4);
-    . = __stack_size;  
-    PROVIDE( _sp = . ); 
-    . = ALIGN(4);
-  } >TCMSRAM AT>TCMSRAM
 
   . = ALIGN(4);
   .bss :
@@ -129,9 +94,39 @@ SECTIONS
     __bss_end__ = _ebss;
   } >RAM
 
- . = ALIGN(8);
+  . = ALIGN(8);
   PROVIDE ( end = _ebss );
   PROVIDE ( _end = _ebss );
+
+  .stack :
+  {
+	. = ALIGN(4);
+	PROVIDE( stack_low = . );
+    . = . + __stack_size;  
+    PROVIDE( _sp = . ); 
+    . = ALIGN(4);
+  } >TCMSRAM
+
+  .tcmsram :
+  {
+  	. = ALIGN(4);
+    *(.tcmsram)
+    *(.tcmsram*)
+    . = ALIGN(4);
+    _snetwork = .;
+    *(.network*)
+    . = ALIGN(4);
+    _enetwork = .;
+  } >TCMSRAM
+  
+  .heap :
+  {
+    . = ALIGN(4);
+    heap_low = .;
+    . = . + __heap_size;
+    heap_top = .;
+    . = ALIGN(4);
+  } >TCMSRAM
 
   .ramadd :
   {
@@ -141,16 +136,7 @@ SECTIONS
     *(.ramadd*)
 	. = ALIGN(4);
     _eramadd = .;
-  } >RAMADD AT>RAMADD
-
-  .heap ORIGIN(RAM) + LENGTH(RAM) - __heap_size :
-  {
-    . = ALIGN(4);
-    heap_low = .;
-    . = . + __heap_size;
-    heap_top = .;
-    . = ALIGN(4);
-  } >RAM AT>RAM
+  } >RAMADD
 
   .bkpsram :
   {
@@ -158,11 +144,11 @@ SECTIONS
     *(.bkpsram)
     *(.bkpsram*)
     *(.configstore*)
-  } >BKPSRAM AT>BKPSRAM
+  } >BKPSRAM
 
   /DISCARD/ :
   {
-	*(*.ARM.attributes)
+	*(*.ARM.*)
 	*(*.comment)
 	*(*.debug*)
   }

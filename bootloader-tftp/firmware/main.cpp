@@ -97,19 +97,15 @@ int main(void) {
     }
 
 	Hardware hw;
-	Network nw;
 	Display display(4);
+	ConfigStore configStore;
+	StoreNetwork storeNetwork;
+	Network nw(&storeNetwork);
 	FirmwareVersion fw(SOFTWARE_VERSION, __DATE__, __TIME__);
+	FlashCodeInstall flashCodeInstall;
 
 	printf("Remote=%c, Key=%c\n", isNotRemote ? 'N' : 'Y', isNotKey ? 'N' : 'Y');
 	fw.Print("Bootloader TFTP Server");
-
-	FlashCodeInstall flashCodeInstall;
-	ConfigStore configStore;
-
-	StoreNetwork storeNetwork;
-	nw.SetNetworkStore(&storeNetwork);
-	nw.Init(&storeNetwork);
 	nw.Print();
 
 	hw.SetMode(hardware::ledblink::Mode::OFF_ON);
@@ -125,6 +121,7 @@ int main(void) {
 
 	remoteConfig.SetEnableReboot(true);
 
+	network::display_ip();
 	display.Printf(3, "Bootloader TFTP Srvr");
 
 	hw.SetMode(hardware::ledblink::Mode::FAST);
