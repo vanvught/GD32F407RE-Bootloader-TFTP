@@ -1,8 +1,8 @@
 /**
- * json_get_phystatus.cpp
+ * @file json_get_directory.cpp
  *
  */
-/* Copyright (C) 2023 by Arjan van Vught mailto:info@gd32-dmx.org
+/* Copyright (C) 2023 by Arjan van Vught mailto:info@orangepi-dmx.nl
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,22 +24,17 @@
  */
 
 #include <cstdio>
+#include <cstdint>
 
-#include "emac/phy.h"
+#include "device/usb/host.h"
 
 namespace remoteconfig {
-namespace net {
-uint32_t json_get_phystatus(char *pOutBuffer, const uint32_t nOutBufferSize) {
-	::net::PhyStatus phyStatus;
-	::net::phy_customized_status(phyStatus);
-
-	const auto nLength = static_cast<uint32_t>(snprintf(pOutBuffer, nOutBufferSize,
-						"{\"link\":\"%s\",\"speed\":\"%s\",\"duplex\":\"%s\",\"autonegotiation\":\"%s\"}",
-						::net::phy_string_get_link(phyStatus.link),
-						::net::phy_string_get_speed(phyStatus.speed),
-						::net::phy_string_get_duplex(phyStatus.duplex),
-						::net::phy_string_get_autonegotiation(phyStatus.bAutonegotiation)));
+namespace storage {
+uint32_t json_get_directory(char *pOutBuffer, const uint32_t nOutBufferSize) {
+	auto nLength = static_cast<uint32_t>(snprintf(pOutBuffer, nOutBufferSize, "{\"label\":\"%s\",\"files\":[", usb::host::get_status() == usb::host::Status::READY ? "storage" : "No USB device"));
+	//TODO
+	nLength += static_cast<uint32_t>(snprintf(&pOutBuffer[nLength], nOutBufferSize - nLength, "]}" ));
 	return nLength;
 }
-}  // namespace net
+}  // namespace storage
 }  // namespace remoteconfig
