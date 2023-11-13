@@ -39,11 +39,7 @@
 #if defined (ENABLE_USB_HOST) && defined (CONFIG_USB_HOST_MSC)
 extern "C" {
 #include "usbh_core.h"
-#if !defined (GD32F4XX)
- extern usbh_host usb_host;
-#else
- extern usbh_host usb_host_msc;
-#endif
+extern usbh_host usb_host_msc;
 }
 #endif
 
@@ -54,7 +50,10 @@ extern "C" {
  void emac_debug_run();
 #endif
 
-#include "panel_led.h"
+#if defined (USE_LEDBLINK_BITBANGING595)
+# include "gd32_bitbanging595.h"
+# include "panel_led.h"
+#endif
 
 extern volatile uint32_t s_nSysTickMillis;
 
@@ -155,11 +154,7 @@ public:
 
 	void Run() {
 #if defined (ENABLE_USB_HOST) && defined (CONFIG_USB_HOST_MSC)
-# if !defined (GD32F4XX)
-		usbh_core_task(&usb_host);
-# else
 		usbh_core_task(&usb_host_msc);
-# endif
 #endif
 		if (__builtin_expect (m_nTicksPerSecond != 0, 1)) {
 			if (__builtin_expect (!(s_nSysTickMillis - m_nMillisPrevious < m_nTicksPerSecond), 1)) {
@@ -168,13 +163,13 @@ public:
 				m_nToggleLed ^= 0x1;
 
 				if (m_nToggleLed != 0) {
-#if defined (CONFIG_LEDBLINK_USE_PANELLED)
+#if defined (USE_LEDBLINK_BITBANGING595)
 					hal::panel_led_on(hal::panelled::ACTIVITY);
 #else
 					GPIO_BOP(LED_BLINK_GPIO_PORT) = LED_BLINK_PIN;
 #endif
 				} else {
-#if defined (CONFIG_LEDBLINK_USE_PANELLED)
+#if defined (USE_LEDBLINK_BITBANGING595)
 					hal::panel_led_off(hal::panelled::ACTIVITY);
 #else
 					GPIO_BC(LED_BLINK_GPIO_PORT) = LED_BLINK_PIN;
@@ -183,7 +178,9 @@ public:
 			}
 		}
 
-		hal::panel_led_run();
+#if defined (USE_LEDBLINK_BITBANGING595)
+		bitBanging595.Run();
+#endif
 
 #if defined (DEBUG_STACK)
 		stack_debug_run();
@@ -205,7 +202,7 @@ private:
 		switch (nFreqHz) {
 		case 0:
 			m_nTicksPerSecond = 0;
-#if defined (CONFIG_LEDBLINK_USE_PANELLED)
+#if defined (USE_LEDBLINK_BITBANGING595)
 			hal::panel_led_off(hal::panelled::ACTIVITY);
 #else
 			GPIO_BC(LED_BLINK_GPIO_PORT) = LED_BLINK_PIN;
@@ -222,7 +219,7 @@ private:
 			break;
 		case 255:
 			m_nTicksPerSecond = 0;
-#if defined (CONFIG_LEDBLINK_USE_PANELLED)
+#if defined (USE_LEDBLINK_BITBANGING595)
 			hal::panel_led_on(hal::panelled::ACTIVITY);
 #else
 			GPIO_BOP(LED_BLINK_GPIO_PORT) = LED_BLINK_PIN;
@@ -239,6 +236,10 @@ private:
 	HwClock m_HwClock;
 #endif
 	bool m_bIsWatchdog { false };
+
+#if defined (USE_LEDBLINK_BITBANGING595)
+	BitBanging595 bitBanging595;
+#endif
 	hardware::ledblink::Mode m_Mode { hardware::ledblink::Mode::UNKNOWN };
 	bool m_doLock { false };
 	uint32_t m_nTicksPerSecond { 1000 / 2 };

@@ -23,10 +23,6 @@
  * THE SOFTWARE.
  */
 
-#ifndef NDEBUG
-# undef NDEBUG
-#endif
-
 #include <cstdio>
 #include <cstdint>
 
@@ -35,19 +31,7 @@
 extern "C" {
 #include "usb_host_msc.h"
 #include "usbh_core.h"
-void console_error(const char *);
 }
-
-#include "../lib-hal/ff12c/ff.h"
-#include "device/usb/host.h"
-
-#if (_FFCONF == 68300)		// R0.12c
- static FATFS fat_fs;
-#else
-# error Not a recognized/tested FatFs version
-#endif
-
-#include "device/usb/host.h"
 
 usbh_user_cb usr_cb = {
     usbh_user_init,
@@ -70,73 +54,51 @@ usbh_user_cb usr_cb = {
     usbh_user_unrecovered_error
 };
 
-static usb::host::Status s_status;
-static usb::host::Speed s_speed;
-static usb::host::Class s_class;
+#define USBH_USR_FS_INIT             0
+#define USBH_USR_FS_READLIST         1
+#define USBH_USR_FS_WRITEFILE        2
+#define USBH_USR_FS_DRAW             3
+#define USBH_USR_FS_DEMOEND          4
 
-namespace usb {
-namespace host {
-Status get_status() {
-	return s_status;
-}
-Speed get_speed() {
-	return s_speed;
-}
-Class get_class() {
-	return s_class;
-}
-}  // namespace host
-}  // namespace usb
+static uint32_t usbh_usr_application_state = USBH_USR_FS_INIT;
 
 void usbh_user_init() {
-	if (s_status == usb::host::Status::NOT_AVAILABLE) {
-		s_status = usb::host::Status::DISCONNECTED;
-#ifndef NDEBUG
+	static uint32_t startup = 0U;
+
+	if (0U == startup) {
+		startup = 1U;
 		puts("USB host library started.");
-#endif
 	}
 }
 
 void usbh_user_deinit() {
-	s_status = usb::host::Status::NOT_AVAILABLE;
+    usbh_usr_application_state = USBH_USR_FS_INIT;
 }
 
 void usbh_user_device_connected() {
-	s_status = usb::host::Status::ATTACHED;
 	puts("> Device Attached.");
 }
 
 void usbh_user_unrecovered_error() {
-	s_status = usb::host::Status::UNRECOVERABLE_ERROR;
 	puts("> Unrecovered error state.");
 }
 
 void usbh_user_device_disconnected() {
-	s_status = usb::host::Status::DISCONNECTED;
 	puts("> Device Disconnected.");
 }
 
 void usbh_user_device_reset() {
-	s_status = usb::host::Status::RESET;
 	puts("> Reset the USB device.");
 }
 
 void usbh_user_device_speed_detected(uint32_t device_speed) {
 	if (PORT_SPEED_HIGH == device_speed) {
-		s_speed = usb::host::Speed::HIGH;
 		puts("> High speed device detected.");
 	} else if (PORT_SPEED_FULL == device_speed) {
-		s_speed = usb::host::Speed::FULL;
-#ifndef NDEBUG
 		puts("> Full speed device detected.");
-#endif
 	} else if (PORT_SPEED_LOW == device_speed) {
-		s_speed = usb::host::Speed::LOW;
-#ifndef NDEBUG
 		puts("> Low speed device detected.");
-#endif
 	} else {
-		s_speed = usb::host::Speed::FAULT;
 		puts("> Device Fault.");
 	}
 }
@@ -175,27 +137,15 @@ void usbh_user_serialnum_string(void *serial_num_string) {
 }
 
 void usbh_user_enumeration_finish() {
-	s_status = usb::host::Status::ENUMERATION_COMPLETED;
     puts("> Enumeration completed.");
 }
 
 void usbh_user_device_not_supported() {
-	s_status = usb::host::Status::DEVICE_NOT_SUPPORTED;
     puts("> Device not supported.");
 }
 
 usbh_user_status usbh_user_userinput() {
 	puts("usbh_user_userinput");
-
-	const FRESULT result = f_mount(&fat_fs, (const TCHAR *) "0:/", (BYTE) 0);
-
-	if (result == FR_OK) {
-		s_status = usb::host::Status::READY;
-	} else {
-		char buffer[32];
-		snprintf(buffer, sizeof(buffer) - 1, "f_mount failed! %d\n", (int) result);
-		console_error(buffer);
-	}
 
     return static_cast<usbh_user_status>(1);
 }

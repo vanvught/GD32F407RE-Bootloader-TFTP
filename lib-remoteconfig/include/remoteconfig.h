@@ -90,7 +90,6 @@ enum class Output {
 	ARTNET,
 	SERIAL,
 	RGBPANEL,
-	PWM,
 	LAST
 };
 
@@ -341,10 +340,6 @@ private:
 	void HandleGetRgbPanelTxt(uint32_t& nSize);
 #endif
 
-#if defined (OUTPUT_DMX_PCA9685)
-	void HandleGetPca9685Txt(uint32_t& nSize);
-#endif
-
 	void HandleSetRconfig();
 	void HandleSetNetworkTxt();
 
@@ -421,10 +416,6 @@ private:
 	void HandleSetRgbPanelTxt();
 #endif
 
-#if defined (OUTPUT_DMX_PCA9685)
-	void HandleSetPca9685Txt();
-#endif
-
 #if defined (OUTPUT_DMX_STEPPER)
 	void HandleSetSparkFunTxt();
 	void HandleSetMotorTxt(uint32_t nMotorIndex);
@@ -458,8 +449,6 @@ private:
 	void HandleDisplayGet();
 	void HandleTftpSet();
 	void HandleTftpGet();
-	void HandleRdmSet();
-	void HandleRdmGet();
 
 	void PlatformHandleTftpSet();
 	void PlatformHandleTftpGet();
