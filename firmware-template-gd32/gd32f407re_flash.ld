@@ -11,8 +11,8 @@ ENTRY(Reset_Handler)
 
 SECTIONS
 {
-  __heap_size = DEFINED(__heap_size) ? __heap_size : 1K;
-  __stack_size = DEFINED(__stack_size) ? __stack_size : 2K;
+  __heap_size = DEFINED(__heap_size) ? __heap_size : 4K;
+  __stack_size = DEFINED(__stack_size) ? __stack_size : 4K;
 
   .vectors :
   {
@@ -46,14 +46,14 @@ SECTIONS
     *(.rodata*)
     . = ALIGN(4);
   } >FLASH
-
+  
   .preinit_array :
   {
     PROVIDE_HIDDEN (__preinit_array_start = .);
     KEEP (*(.preinit_array*))
     PROVIDE_HIDDEN (__preinit_array_end = .);
   } >FLASH
-
+  
   .init_array :
   {
     PROVIDE_HIDDEN (__init_array_start = .);
@@ -61,7 +61,7 @@ SECTIONS
     KEEP (*(.init_array*))
     PROVIDE_HIDDEN (__init_array_end = .);
   } >FLASH
-
+  
   .fini_array :
   {
     PROVIDE_HIDDEN (__fini_array_start = .);
@@ -69,34 +69,6 @@ SECTIONS
     KEEP (*(SORT(.fini_array.*)))
     PROVIDE_HIDDEN (__fini_array_end = .);
   } >FLASH
-  
-  _sidata = LOADADDR(.data);
-  .data :
-  {
-    . = ALIGN(4);
-    _sdata = .;
-    *(.data)
-    *(.data*)
-    . = ALIGN(4);
-    _edata = .;
-  } >RAM AT> FLASH
-
-  . = ALIGN(4);
-  .bss :
-  {
-    _sbss = .;
-    __bss_start__ = _sbss;
-    *(.bss)
-    *(.bss*)
-    *(COMMON)
-    . = ALIGN(4);
-    _ebss = .;
-    __bss_end__ = _ebss;
-  } >RAM
-
-  . = ALIGN(8);
-  PROVIDE ( end = _ebss );
-  PROVIDE ( _end = _ebss );
 
   .stack :
   {
@@ -128,6 +100,34 @@ SECTIONS
     . = ALIGN(4);
   } >TCMSRAM
 
+  _sidata = LOADADDR(.data);
+  .data :
+  {
+    . = ALIGN(4);
+    _sdata = .;
+    *(.data)
+    *(.data*)
+    . = ALIGN(4);
+    _edata = .;
+  } >RAM AT> FLASH
+
+  . = ALIGN(4);
+  .bss :
+  {
+    _sbss = .;
+    __bss_start__ = _sbss;
+    *(.bss)
+    *(.bss*)
+    *(COMMON)
+    . = ALIGN(4);
+    _ebss = .;
+    __bss_end__ = _ebss;
+  } >RAM
+
+  . = ALIGN(8);
+  PROVIDE ( end = _ebss );
+  PROVIDE ( _end = _ebss );
+
   .ramadd :
   {
     _sramadd = .;
@@ -154,5 +154,4 @@ SECTIONS
   }
 }
 
- /* input sections */
-GROUP(libgcc.a libc.a)
+GROUP(libgcc.a)

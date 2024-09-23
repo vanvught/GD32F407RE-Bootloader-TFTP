@@ -27,8 +27,9 @@
 #include <cstdio>
 #include <cassert>
 
-#include "storedevice.h"
+#include "configstoredevice.h"
 #include "i2c/at24cxx.h"
+
 #include "debug.h"
 
 namespace storedevice {
@@ -49,7 +50,7 @@ StoreDevice::StoreDevice() : AT24C32(storedevice::I2C_INDEX) {
 	if (!m_IsDetected) {
 		printf("StoreDevice: No AT24C32 at %2x", AT24C32::GetAddress());
 	} else {
-		printf("StoreDevice: Detected AT24C32 with total %u bytes [%u kB]\n", GetSize(), GetSize() / 1024U);
+		printf("StoreDevice: AT24C32 total %u bytes [%u kB]\n", GetSize(), GetSize() / 1024U);
 	}
 
 	DEBUG_EXIT
@@ -81,7 +82,7 @@ bool StoreDevice::Read(uint32_t nOffset, uint32_t nLength, uint8_t *pBuffer, sto
 	return true;
 }
 
-bool StoreDevice::Erase(__attribute__((unused)) uint32_t nOffset, __attribute__((unused)) uint32_t nLength, storedevice::result& nResult) {
+bool StoreDevice::Erase([[maybe_unused]] uint32_t nOffset, [[maybe_unused]] uint32_t nLength, storedevice::result& nResult) {
 	DEBUG_ENTRY
 
 	nResult = storedevice::result::OK;
