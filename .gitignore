@@ -52,3 +52,4 @@
 *.map
 *.list
 /.cache
+/common/scripts/gd32/venv

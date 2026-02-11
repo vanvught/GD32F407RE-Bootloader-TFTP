@@ -1,15 +1,4 @@
-#!/bin/bash
-NPROC=2
-
-if [ "$(uname)" == "Darwin" ]; then
-     NPROC=$(sysctl -a | grep machdep.cpu.core_count | cut -d ':' -f 2)     
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-     NPROC=$(nproc)
-fi
-
-((NPROC--))
-
-echo $NPROC
+#!/usr/bin/env bash
 
 cd ..
 
@@ -39,8 +28,8 @@ do
 		
 			for m in $MAKEFILE
 			do
-				make -f $m -j $NPROC clean
-				make -f $m -j $NPROC ENET_PHY=$i
+				make -f $m -j clean
+				make -f $m ENET_PHY=$i
 				retVal=$?
 				
 				if [ $retVal -ne 0 ]; then
@@ -53,17 +42,17 @@ do
 			
 				if [ $SUFFIX1 == 'Makefile' ]
 				then
-					cp gd32f407.bin /tmp/$f/$i
+					cp gd32f4xx.bin /tmp/$f/$i
 				else
 					echo "[" $SUFFIX1 "][" $SUFFIX2 "]"
 					
 					if [ -z "$SUFFIX2" ]
 					then
 						mkdir /tmp/$f/$i/$SUFFIX1/
-						cp gd32f407.bin /tmp/$f/$i/$SUFFIX1
+						cp gd32f4xx.bin /tmp/$f/$i/$SUFFIX1
 					else
 						mkdir -p /tmp/$f/$i/$SUFFIX1/$SUFFIX2/
-						cp gd32f407.bin /tmp/$f/$i/$SUFFIX1/$SUFFIX2/
+						cp gd32f4xx.bin /tmp/$f/$i/$SUFFIX1/$SUFFIX2/
 					fi
 				fi
 							
@@ -77,7 +66,7 @@ done
 
 cd /tmp/$DIR
 			
-find . -name gd32f407.bin | sort | xargs ls -al
-find . -name gd32f407.bin | xargs ls -al | wc -l
+find . -name gd32f4xx.bin | sort | xargs ls -al
+find . -name gd32f4xx.bin | xargs ls -al | wc -l
 
 cd -
