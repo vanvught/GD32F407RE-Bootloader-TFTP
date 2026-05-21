@@ -200,7 +200,7 @@ void __attribute__((cold)) Start(uint8_t mac_address[], emac::phy::Link& link) {
     }
 
 #if defined(CONFIG_NET_ENABLE_PTP)
-    gd32_ptp_start();
+    Gd32PtpStart();
 #if !defined(DISABLE_RTC)
     // Set the System Clock from the Hardware Clock
     HwClock::Get()->HcToSys();
