@@ -27,8 +27,6 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry excluding="rtc|console|debug|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="uart0" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="console"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="console/uart0"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="debug"/>
 						<entry excluding="gd32" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 						<entry excluding="com0" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/gd32"/>
