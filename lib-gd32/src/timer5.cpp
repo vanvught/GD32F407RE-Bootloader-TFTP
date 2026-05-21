@@ -34,7 +34,7 @@ void Timer5Config() {
     timer_struct_para_init(&timer_initpara);
 
     timer_initpara.prescaler = TIMER_PSC_1MHZ;
-    timer_initpara.period = static_cast<uint32_t>(~0);
+    timer_initpara.period = UINT32_MAX;
     timer_init(TIMER5, &timer_initpara);
     timer_enable(TIMER5);
 }
