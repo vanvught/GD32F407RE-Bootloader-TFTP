@@ -95,7 +95,6 @@ clean: $(LIBDEP)
 	rm -f $(TARGET)
 	rm -f $(MAP)
 	rm -f $(LIST)
-	rm -f $(SIZE)
 
 #
 # Libraries
