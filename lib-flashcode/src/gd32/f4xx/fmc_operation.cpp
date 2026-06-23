@@ -53,7 +53,7 @@ fmc_sector_info_struct fmc_sector_info_get(uint32_t addr) {
             /* bank0 area */
             temp = (addr - FMC_BANK0_START_ADDRESS) / SIZE_16KB;
             if (4U > temp) {
-                sector_info.sector_name = (uint32_t)temp;
+                sector_info.sector_name = temp;
                 sector_info.sector_num = CTL_SN(temp);
                 sector_info.sector_size = SIZE_16KB;
                 sector_info.sector_start_addr = FMC_BANK0_START_ADDRESS + (SIZE_16KB * temp);
@@ -66,7 +66,7 @@ fmc_sector_info_struct fmc_sector_info_get(uint32_t addr) {
                 sector_info.sector_end_addr = 0x0801FFFFU;
             } else {
                 temp = (addr - FMC_BANK0_START_ADDRESS) / SIZE_128KB;
-                sector_info.sector_name = (uint32_t)(temp + 4);
+                sector_info.sector_name = (temp + 4);
                 sector_info.sector_num = CTL_SN(temp + 4);
                 sector_info.sector_size = SIZE_128KB;
                 sector_info.sector_start_addr = FMC_BANK0_START_ADDRESS + (SIZE_128KB * temp);
@@ -76,7 +76,7 @@ fmc_sector_info_struct fmc_sector_info_get(uint32_t addr) {
             /* bank1 area */
             temp = (addr - FMC_BANK1_START_ADDRESS) / SIZE_16KB;
             if (4U > temp) {
-                sector_info.sector_name = (uint32_t)(temp + 12);
+                sector_info.sector_name = (temp + 12);
                 sector_info.sector_num = CTL_SN(temp + 16);
                 sector_info.sector_size = SIZE_16KB;
                 sector_info.sector_start_addr = FMC_BANK0_START_ADDRESS + (SIZE_16KB * temp);
@@ -89,14 +89,14 @@ fmc_sector_info_struct fmc_sector_info_get(uint32_t addr) {
                 sector_info.sector_end_addr = 0x0811FFFFU;
             } else if (64U > temp) {
                 temp = (addr - FMC_BANK1_START_ADDRESS) / SIZE_128KB;
-                sector_info.sector_name = (uint32_t)(temp + 16);
+                sector_info.sector_name = (temp + 16);
                 sector_info.sector_num = CTL_SN(temp + 20);
                 sector_info.sector_size = SIZE_128KB;
                 sector_info.sector_start_addr = FMC_BANK1_START_ADDRESS + (SIZE_128KB * temp);
                 sector_info.sector_end_addr = sector_info.sector_start_addr + SIZE_128KB - 1;
             } else {
                 temp = (addr - FMC_BANK1_START_ADDRESS) / SIZE_256KB;
-                sector_info.sector_name = (uint32_t)(temp + 20);
+                sector_info.sector_name = (temp + 20);
                 sector_info.sector_num = CTL_SN(temp + 8);
                 sector_info.sector_size = SIZE_256KB;
                 sector_info.sector_start_addr = FMC_BANK1_START_ADDRESS + (SIZE_256KB * temp);
