@@ -158,10 +158,9 @@ void fmc_erase_sector_by_address(uint32_t address) {
         }
         /* lock the flash program erase controller */
         fmc_lock();
-        printf("\r\nAddress 0x%08X is located in the : SECTOR_NUMBER_%d !\n", address, sector_info.sector_name);
-        printf("\r\nSector range: 0x%08X to 0x%08X\n", sector_info.sector_start_addr, sector_info.sector_end_addr);
-        printf("\r\nSector size: %d KB\n", (sector_info.sector_size / 1024));
-        printf("\r\nErase success!\n");
-        printf("\r\n");
+        printf("Address 0x%08X is located in the : SECTOR_NUMBER_%u !\n", static_cast<unsigned>(address), static_cast<unsigned>(sector_info.sector_name));
+        printf("Sector range: 0x%08X to 0x%08X\n", static_cast<unsigned>(sector_info.sector_start_addr), static_cast<unsigned>(sector_info.sector_end_addr));
+        printf("Sector size: %u KB\n", static_cast<unsigned>(sector_info.sector_size / 1024));
+        puts("Erase success!\n");
     }
 }
