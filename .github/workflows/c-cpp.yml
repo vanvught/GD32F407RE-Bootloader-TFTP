@@ -29,9 +29,9 @@ jobs:
         wget -qO /tmp/arm-toolchain.tar.xz "$TOOLCHAIN_URL"
         sudo tar -xJf /tmp/arm-toolchain.tar.xz -C /opt
         echo "$TOOLCHAIN_DIR/bin" >> "$GITHUB_PATH"
-    - name: make bootloader-tftp
+    - name: version
+      run: arm-none-eabi-g++ --version
+    - name: build all
       run: |
-        cd bootloader-tftp
-        make -f Makefile.GD32 clean
-        make -f Makefile.GD32
-        cd -
+        cd scripts
+        ./build_all.sh
