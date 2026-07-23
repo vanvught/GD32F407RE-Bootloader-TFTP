@@ -29,7 +29,6 @@
 #include "gd32.h"
 #include "fmc_operation.h"
 #include "firmware/debug/debug_dump.h"
-#include "firmware/debug/debug_debug.h"
 
 uint32_t FlashCode::GetSize() const {
     return FMC_SIZE * 1024U;
@@ -40,8 +39,8 @@ uint32_t FlashCode::GetSectorSize() const {
 }
 
 bool FlashCode::Read(uint32_t offset, uint32_t length, uint8_t* buffer, flashcode::Result& result) {
-    DEBUG_ENTRY();
-    DEBUG_PRINTF("offset=%p[%d], length=%u[%d], data=%p[%d]", offset, (((uint32_t)(offset) & 0x3) == 0), length, (((uint32_t)(length) & 0x3) == 0), data, (((uint32_t)(data) & 0x3) == 0));
+    FLASHCODE_DEBUG_ENTRY();
+    FLASHCODE_DEBUG_PRINTF("offset=%p[%d], length=%u[%d], data=%p[%d]", offset, (((uint32_t)(offset) & 0x3) == 0), length, (((uint32_t)(length) & 0x3) == 0), data, (((uint32_t)(data) & 0x3) == 0));
 
     auto* src = reinterpret_cast<const uint32_t*>(offset + FLASH_BASE);
     auto* dst = reinterpret_cast<uint32_t*>(buffer);
@@ -56,13 +55,13 @@ bool FlashCode::Read(uint32_t offset, uint32_t length, uint8_t* buffer, flashcod
 
     result = flashcode::Result::kOk;
 
-    DEBUG_EXIT();
+    FLASHCODE_DEBUG_EXIT();
     return 0;
 }
 
 bool FlashCode::Write(uint32_t offset, uint32_t length, const uint8_t* buffer, flashcode::Result& result) {
-    DEBUG_ENTRY();
-    DEBUG_PRINTF("offset=%p[%d], length=%u[%d], data=%p[%d]", offset, (((uint32_t)(offset) & 0x3) == 0), length, (((uint32_t)(length) & 0x3) == 0), buffer, (((uint32_t)(buffer) & 0x3) == 0));
+    FLASHCODE_DEBUG_ENTRY();
+    FLASHCODE_DEBUG_PRINTF("offset=%p[%d], length=%u[%d], data=%p[%d]", offset, (((uint32_t)(offset) & 0x3) == 0), length, (((uint32_t)(length) & 0x3) == 0), buffer, (((uint32_t)(buffer) & 0x3) == 0));
 
     result = flashcode::Result::kError;
 
@@ -76,8 +75,8 @@ bool FlashCode::Write(uint32_t offset, uint32_t length, const uint8_t* buffer, f
         fmc_state_enum state = fmc_word_program(address, *data);
 
         if (FMC_READY != state) {
-            DEBUG_PRINTF("state=%d [%p]", state, address);
-            DEBUG_EXIT();
+            FLASHCODE_DEBUG_PRINTF("state=%d [%p]", state, address);
+            FLASHCODE_DEBUG_EXIT();
             return true;
         }
 
@@ -90,8 +89,8 @@ bool FlashCode::Write(uint32_t offset, uint32_t length, const uint8_t* buffer, f
         fmc_state_enum state = fmc_word_program(address, *data);
 
         if (FMC_READY != state) {
-            DEBUG_PRINTF("state=%d [%p]", state, address);
-            DEBUG_EXIT();
+            FLASHCODE_DEBUG_PRINTF("state=%d [%p]", state, address);
+            FLASHCODE_DEBUG_EXIT();
             return true;
         }
     }
@@ -103,13 +102,13 @@ bool FlashCode::Write(uint32_t offset, uint32_t length, const uint8_t* buffer, f
 
     result = flashcode::Result::kOk;
 
-    DEBUG_EXIT();
+    FLASHCODE_DEBUG_EXIT();
     return true;
 }
 
 bool FlashCode::Erase(uint32_t offset, uint32_t length, flashcode::Result& result) {
-    DEBUG_ENTRY();
-    DEBUG_PRINTF("offset=%p[%d], length=%x[%d]", offset, (((uint32_t)(offset) & 0x3) == 0), length, (((uint32_t)(length) & 0x3) == 0));
+    FLASHCODE_DEBUG_ENTRY();
+    FLASHCODE_DEBUG_PRINTF("offset=%p[%d], length=%x[%d]", offset, (((uint32_t)(offset) & 0x3) == 0), length, (((uint32_t)(length) & 0x3) == 0));
 
     result = flashcode::Result::kError;
 
@@ -125,9 +124,9 @@ bool FlashCode::Erase(uint32_t offset, uint32_t length, flashcode::Result& resul
             return true;
         }
 
-        DEBUG_PRINTF("Address 0x%08X is located in the : SECTOR_NUMBER_%d", address, sector_info.sector_name);
-        DEBUG_PRINTF("Sector range: 0x%08X to 0x%08X", sector_info.sector_start_addr, sector_info.sector_end_addr);
-        DEBUG_PRINTF("nSector size: %d KB\n", (sector_info.sector_size / 1024));
+        FLASHCODE_DEBUG_PRINTF("Address 0x%08X is located in the : SECTOR_NUMBER_%d", address, sector_info.sector_name);
+        FLASHCODE_DEBUG_PRINTF("Sector range: 0x%08X to 0x%08X", sector_info.sector_start_addr, sector_info.sector_end_addr);
+        FLASHCODE_DEBUG_PRINTF("nSector size: %d KB\n", (sector_info.sector_size / 1024));
 
         fmc_unlock();
         fmc_flag_clear(FMC_FLAG_END | FMC_FLAG_OPERR | FMC_FLAG_WPERR | FMC_FLAG_PGMERR | FMC_FLAG_PGSERR);
@@ -144,6 +143,6 @@ bool FlashCode::Erase(uint32_t offset, uint32_t length, flashcode::Result& resul
 
     result = flashcode::Result::kOk;
 
-    DEBUG_EXIT();
+    FLASHCODE_DEBUG_EXIT();
     return true;
 }
