@@ -24,6 +24,7 @@
  */
 
 #include <cstdint>
+#include <span>
 
 #include "flashcode.h"
 #include "gd32.h"
@@ -38,30 +39,34 @@ uint32_t FlashCode::GetSectorSize() const {
     return SIZE_16KB;
 }
 
-bool FlashCode::Read(uint32_t offset, uint32_t length, uint8_t* buffer, flashcode::Result& result) {
+bool FlashCode::Read(uint32_t offset, std::span<uint8_t> buffer, flashcode::Result& result) {
     FLASHCODE_DEBUG_ENTRY();
-    FLASHCODE_DEBUG_PRINTF("offset=%p[%d], length=%u[%d], data=%p[%d]", offset, (((uint32_t)(offset) & 0x3) == 0), length, (((uint32_t)(length) & 0x3) == 0), data, (((uint32_t)(data) & 0x3) == 0));
+    FLASHCODE_DEBUG_PRINTF("offset=%p[%d], length=%u[%d], data=%p[%d]", reinterpret_cast<void*>(offset), ((offset & 0x3U) == 0), static_cast<unsigned>(buffer.size()), ((buffer.size() & 0x3U) == 0), buffer.data(),
+                           ((reinterpret_cast<uintptr_t>(buffer.data()) & 0x3U) == 0));
 
-    auto* src = reinterpret_cast<const uint32_t*>(offset + FLASH_BASE);
-    auto* dst = reinterpret_cast<uint32_t*>(buffer);
+    const auto* src = reinterpret_cast<const uint32_t*>(offset + FLASH_BASE);
+    auto* dst = reinterpret_cast<uint32_t*>(buffer.data());
 
-    while (length > 0) {
+    auto length = buffer.size();
+
+    while (length >= sizeof(uint32_t)) {
         *dst++ = *src++;
-        length -= 4;
+        length -= sizeof(uint32_t);
     }
 
     debug::Dump(reinterpret_cast<void*>(offset + FLASH_BASE), 64);
-    debug::Dump(buffer, 64);
+    debug::Dump(buffer.data(), 64);
 
     result = flashcode::Result::kOk;
 
     FLASHCODE_DEBUG_EXIT();
-    return 0;
+    return true;
 }
 
-bool FlashCode::Write(uint32_t offset, uint32_t length, const uint8_t* buffer, flashcode::Result& result) {
+bool FlashCode::Write(uint32_t offset, std::span<const uint8_t> buffer, flashcode::Result& result) {
     FLASHCODE_DEBUG_ENTRY();
-    FLASHCODE_DEBUG_PRINTF("offset=%p[%d], length=%u[%d], data=%p[%d]", offset, (((uint32_t)(offset) & 0x3) == 0), length, (((uint32_t)(length) & 0x3) == 0), buffer, (((uint32_t)(buffer) & 0x3) == 0));
+    FLASHCODE_DEBUG_PRINTF("offset=%p[%d], length=%u[%d], data=%p[%d]", reinterpret_cast<void*>(offset), ((offset & 0x3U) == 0), static_cast<unsigned>(buffer.size()), ((buffer.size() & 0x3U) == 0), buffer.data(),
+                           ((reinterpret_cast<uintptr_t>(buffer.data()) & 0x3U) == 0));
 
     result = flashcode::Result::kError;
 
@@ -69,27 +74,31 @@ bool FlashCode::Write(uint32_t offset, uint32_t length, const uint8_t* buffer, f
     fmc_flag_clear(FMC_FLAG_END | FMC_FLAG_OPERR | FMC_FLAG_WPERR | FMC_FLAG_PGMERR | FMC_FLAG_PGSERR);
 
     uint32_t address = offset + FLASH_BASE;
-    auto* data = reinterpret_cast<const uint32_t*>(buffer);
+    const auto* data = reinterpret_cast<const uint32_t*>(buffer.data());
 
-    while (length >= 4) {
-        fmc_state_enum state = fmc_word_program(address, *data);
+    auto length = buffer.size();
 
-        if (FMC_READY != state) {
+    while (length >= sizeof(uint32_t)) {
+        const auto kState = fmc_word_program(address, *data);
+
+        if (FMC_READY != kState) {
             FLASHCODE_DEBUG_PRINTF("state=%d [%p]", state, address);
+            fmc_lock();
             FLASHCODE_DEBUG_EXIT();
             return true;
         }
 
-        data++;
-        address += 4;
-        length -= 4;
+        ++data;
+        address += sizeof(uint32_t);
+        length -= sizeof(uint32_t);
     }
 
     if (length > 0) {
-        fmc_state_enum state = fmc_word_program(address, *data);
+        const auto kState = fmc_word_program(address, *data);
 
-        if (FMC_READY != state) {
+        if (FMC_READY != kState) {
             FLASHCODE_DEBUG_PRINTF("state=%d [%p]", state, address);
+            fmc_lock();
             FLASHCODE_DEBUG_EXIT();
             return true;
         }
@@ -97,8 +106,8 @@ bool FlashCode::Write(uint32_t offset, uint32_t length, const uint8_t* buffer, f
 
     fmc_lock();
 
-    debug::Dump(buffer, 64);
-    debug::Dump(reinterpret_cast<void *>(offset + FLASH_BASE), 64);
+    debug::Dump(buffer.data(), 64);
+    debug::Dump(reinterpret_cast<void*>(offset + FLASH_BASE), 64);
 
     result = flashcode::Result::kOk;
 
